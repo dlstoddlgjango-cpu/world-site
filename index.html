@@ -2,61 +2,405 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>World Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>루센: 아르카디아 아카데미</title>
+
   <style>
-    body {
-      margin: 0;
-      background: #0e0e14;
-      color: white;
-      font-family: Arial, sans-serif;
+    :root{
+      --bg:#0b0b12;
+      --panel:#111224cc;
+      --panel2:#0f1020ee;
+      --text:#e9e9ff;
+      --muted:#a7a7c7;
+      --line:#2a2b48;
+      --accent:#8aa2ff;
+      --accent2:#b48cff;
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 18px;
     }
-    #intro {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(138,162,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 80% 30%, rgba(180,140,255,.18), transparent 55%),
+        radial-gradient(1100px 700px at 40% 100%, rgba(120,255,220,.10), transparent 60%),
+        linear-gradient(180deg, #07070c, #0b0b12 35%, #07070c);
     }
-    button {
-      font-size: 20px;
-      padding: 14px 28px;
-      cursor: pointer;
+    a{color:inherit}
+    .wrap{max-width: 1100px; margin: 0 auto; padding: 28px 18px 60px;}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:18px;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px;}
+    .brandLogo{
+      width:34px;height:34px;border-radius:12px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      display:flex;align-items:center;justify-content:center;
     }
-    #world {
-      display: none;
-      padding: 40px;
+    .brandLogo img{width:100%;height:100%;object-fit:cover;display:block;}
+    .badge{font-size:12px;color:var(--muted);padding:6px 10px;border:1px solid var(--line);border-radius:999px;background: rgba(255,255,255,.03);}
+    .controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      transition: .15s ease;
+      user-select:none;
     }
+    .btn:hover{ transform: translateY(-1px); border-color: var(--accent); }
+    .btn.primary{
+      border-color: rgba(138,162,255,.65);
+      background: linear-gradient(135deg, rgba(138,162,255,.18), rgba(180,140,255,.12));
+    }
+    .btn.tiny{ padding:8px 10px; font-size:13px; border-radius:10px;}
+
+    .stage{
+      position:relative;
+      background: var(--panel);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .stageInner{position:relative; padding: 22px 20px; min-height: 580px;}
+    .page{ display:none; }
+    .page.active{ display:block; }
+    .headline{font-size: 28px;margin: 6px 0 6px;letter-spacing:.2px; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+    .sub{margin: 0 0 18px;color: var(--muted);line-height:1.6;}
+
+    .typingBox{
+      background: var(--panel2);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 20px;
+      line-height: 1.8;
+      min-height: 250px;
+      white-space: pre-wrap;
+      font-size: 15px;
+    }
+    .cursor{
+      display:inline-block;width:10px;margin-left:2px;
+      border-left: 2px solid var(--accent);
+      animation: blink .9s steps(2) infinite;
+      height: 1em; vertical-align: -2px;
+    }
+    @keyframes blink { 50%{opacity:0} }
+
+    .navArrows{
+      position:absolute; inset: 0; pointer-events:none;
+      display:flex; align-items:center; justify-content:space-between; padding: 0 10px;
+    }
+    .arrow{
+      pointer-events:auto; width: 44px; height: 44px; border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.25);
+      display:flex; align-items:center; justify-content:center; cursor:pointer; transition:.15s ease;
+    }
+    .arrow:hover:not([aria-disabled="true"]){ border-color: var(--accent); background: rgba(138,162,255,.1); }
+    .arrow[aria-disabled="true"]{opacity:0; cursor:default;}
+
+    .pillRow{display:flex; gap:8px; flex-wrap:wrap; margin: 12px 0 16px;}
+    .pill{
+      display:flex; align-items:center; gap:8px; padding: 8px 12px;
+      border-radius: 999px; border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18); color: var(--muted); font-size: 13px;
+    }
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin: 14px 0 16px;}
+    .tab{
+      padding: 9px 12px; border-radius: 999px; border:1px solid var(--line);
+      background: rgba(255,255,255,.03); cursor:pointer; font-size: 13px; color: var(--muted);
+    }
+    .tab.active{
+      color: var(--text); border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(138,162,255,.18), rgba(180,140,255,.12));
+    }
+    .grid{display:grid;grid-template-columns: repeat(12, 1fr);gap: 12px;}
+    .card{
+      grid-column: span 6; background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08); border-radius: 16px;
+      padding: 14px; cursor:pointer; transition:.2s ease;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .card:hover{transform: translateY(-3px); border-color: var(--accent); background: rgba(255,255,255,.06);}
+    .portrait{
+      width:64px;height:64px;border-radius:14px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.1); background: #000; flex: 0 0 auto;
+    }
+    .portrait img{width:100%;height:100%;object-fit:cover;}
+    .name{font-weight:800; font-size: 16px; margin:0 0 4px 0;}
+    .meta{margin:0;color: var(--muted);font-size: 13px;line-height:1.4;}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+    .tag{font-size:11px;color: var(--accent); border:1px solid rgba(138,162,255,.2); border-radius:4px; padding: 2px 6px; background: rgba(138,162,255,.05);}
+
+    .overlay{
+      position:fixed; inset:0; background: rgba(0,0,0,.7);
+      backdrop-filter: blur(8px); display:none; align-items:center;
+      justify-content:center; padding: 20px; z-index: 100;
+    }
+    .overlay.open{ display:flex; }
+    .modal{
+      width:min(850px, 100%); max-height: 90vh; overflow-y: auto;
+      background: #0f1020; border:1px solid var(--line); border-radius: 20px;
+    }
+    .modalHeader{ padding: 16px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; }
+    .modalBody{padding: 24px;}
+    .twoCol{display:grid; grid-template-columns: 1fr 1fr; gap:16px;}
+    .box{ background: rgba(255,255,255,.03); border:1px solid var(--line); border-radius: 12px; padding: 16px; line-height:1.7; color: var(--muted); font-size: 14px; }
+    @media (max-width: 760px){ .card{ grid-column: span 12; } .twoCol{ grid-template-columns: 1fr; } }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brandLogo">
+          <div style="width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));"></div>
+        </div>
+        <div>루센 · 아르카디아 아카데미</div>
+        <div class="badge">로판 · 아카데미 · 헌터물</div>
+      </div>
+      <div class="controls">
+        <button class="btn tiny" id="btnBgm">BGM: OFF</button>
+      </div>
+    </div>
 
-<div id="intro">
-  <button onclick="enterWorld()">세계에 들어가기</button>
-</div>
+    <div class="stage">
+      <div class="stageInner">
+        <section class="page active" data-page="0">
+          <div class="headline">입학 안내</div>
+          <p class="sub">대륙 최고의 전력 양성소, 아르카디아에 오신 것을 환영합니다.</p>
+          <div class="pillRow" id="nationPills"></div>
+          <button class="btn primary" id="enterBtn" style="padding: 14px 28px; font-weight: bold;">교문에 들어서기</button>
+        </section>
 
-<div id="world">
-  <h1>세계관</h1>
-  <p id="text"></p>
-</div>
+        <section class="page" data-page="1">
+          <div class="headline">세계관 리포트</div>
+          <p class="sub">아카데미 학생이라면 반드시 숙지해야 할 루센 대륙의 현황입니다.</p>
+          <div class="typingBox" id="worldTyping" style="cursor:pointer;">
+            <span id="worldText"></span><span class="cursor" id="worldCursor"></span>
+          </div>
+          <div class="twoCol" style="margin-top:16px">
+            <div class="box" id="genreBox"></div>
+            <div class="box" id="systemBox"></div>
+          </div>
+        </section>
 
-<script>
-  const text = "이 세계는 기억과 인연으로 구성된 세계다...";
-  let i = 0;
+        <section class="page" data-page="2">
+          <div class="headline">재학생 명부</div>
+          <p class="sub">다양한 배경을 가진 동료들과 인연을 맺어보세요.</p>
+          <div class="tabs" id="gradeTabs"></div>
+          <div class="grid" id="cardGrid"></div>
+        </section>
 
-  function enterWorld() {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("world").style.display = "block";
-    typeText();
-  }
+        <div class="navArrows">
+          <div class="arrow" id="prevBtn">◀</div>
+          <div class="arrow" id="nextBtn">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  function typeText() {
-    if (i < text.length) {
-      document.getElementById("text").innerHTML += text[i];
-      i++;
-      setTimeout(typeText, 50);
+  <div class="overlay" id="charModal">
+    <div class="modal">
+      <div class="modalHeader">
+        <p style="margin:0; font-weight:bold;" id="charTitle"></p>
+        <button class="btn tiny" id="closeChar">✕ 닫기</button>
+      </div>
+      <div class="modalBody" id="charBody"></div>
+    </div>
+  </div>
+
+  <audio id="bgm" src="/bgm.mp3" loop></audio>
+
+  <script>
+    // =============================
+    // ✅ 최신 데이터 반영 (로판/로코/헌터물 톤)
+    // =============================
+    const NATIONS = [
+      { key:"🏛️ 로벨 제국", icon:"" }, { key:"🐉 연 왕국", icon:"" },
+      { key:"✝️ 발테르 성국", icon:"" }, { key:"🪄 아스트람 마법연방", icon:"" },
+      { key:"🦴 페나르 수인연맹", icon:"" }, { key:"🌲 실바리엘 수림국", icon:"" }
+    ];
+
+    const GENRE_TEXT = `✨ 장르 가이드
+• 로코 아카데미 & 서바이벌 헌터물
+• 긴장감 넘치는 역하렘 군상극
+• 일상의 설렘과 전장의 치열함이 공존하는 세계`;
+
+    const SYSTEM_TEXT = `🌍 아카데미 시스템
+• 무대: 마법과 귀족제가 공존하는 '루센 대륙'
+• 위기: 차원의 벽 붕괴와 마물 침공 (👾)
+• 목표: 마석 확보 및 차원 봉인을 위한 엘리트 육성
+• 규칙: "차별 엄금"이나 보이지 않는 계급 갈등 존재`;
+
+    const WORLD_DETAIL = 
+`# 🏰 루센 — 격식의 시대, 균열의 서사
+
+루센은 찬란한 마법 문명과 엄격한 귀족제가 공존하는 땅입니다. 
+하지만 완벽해 보이던 이 세계는 ‘차원의 벽 붕괴’라는 거대한 재난 앞에 놓여 있습니다.
+
+# 👾 헌터의 숙명: 차원 붕괴와 마석
+불안정한 차원의 벽을 넘어 마물이 쏟아질 때, 아카데미 학생들은 '헌터'가 됩니다.
+- 마물을 토벌하고 얻는 '마석'은 부와 명예의 상징입니다.
+- 토벌은 단순한 전투가 아닌, 자신의 가치를 증명하는 사교의 장이기도 합니다.
+
+# ⚔️ 직역별 클래스 가이드
+• 마법사: 마탑 중심. 차원 분석 및 정화 담당. (백마법사는 매우 희귀함)
+• 기사: 귀족의 방패. 최전선에서 마물과 격돌하는 핵심 전력.
+• 성직자: 신전 소속. 오염 정화 및 민심 통제. (혼인 가능)
+• 정령사: 자연과 공명하는 자유로운 영혼들. 개인 역량 차이가 극심함.
+
+# 🌸 아르카디아의 일상
+강의실에서의 티격태격하는 소동이 전장의 신뢰로 이어집니다. 
+당신은 이 치열한 아카데미에서 누구의 손을 잡겠습니까?`;
+
+    const CHARACTERS = {
+      "1학년": [
+        { name: "클로에 리넨펠트", role: "🏛️ 약초학부 신입생", age: "20", emoji: "🌱", className: "약초학부", looks: "연갈색 머리/연녹안", code: "소심한 치유계/유리멘탈", keywords: ["성장", "치유", "로코"], detail: "재능은 뛰어나지만 자신감이 부족한 치유사. 당황하면 엉뚱한 약초를 내밀어 소동을 일으키곤 합니다." },
+        { name: "네아 펠리온", role: "🦴 수인 고양이족", age: "21", emoji: "🐱", className: "전투학부", looks: "주황 머리/남색 눈", code: "호기심형/본능중심", keywords: ["애정결핍", "직감", "장난"], detail: "본능에 충실한 트러블 메이커. 금지된 구역일수록 더 깊숙이 파고드는 호기심 대장입니다." },
+        { name: "리안 펜릴", role: "🦴 수인족 후계", age: "20", emoji: "🐾", className: "전투학부", looks: "은회색 머리/금안", code: "대형견/일편단심", keywords: ["충성", "직진", "상처"], detail: "무뚝뚝해 보이지만 믿음을 준 이에게는 꼬리를 흔드는 충직한 늑대. 수인에 대한 편견을 실력으로 증명하려 합니다." }
+      ],
+      "2학년": [
+        { name: "아일린 실바리엘", role: "🌲 정령사 엘프", age: "68(22)", emoji: "🌿", className: "정령학부", looks: "연녹발/진녹안", code: "자연조율자/무심다정", keywords: ["공존", "정화", "거리감"], detail: "인간 사회의 속도에 적응 중인 엘프. 무심한 듯 챙겨주는 츤데레 매력이 있습니다." },
+        { name: "이사벨라 몽테리온", role: "🏛️ 후작 영애", age: "22", emoji: "🦂", className: "인문학부", looks: "플래티넘 블론드/자안", code: "오만한 귀족/서열중시", keywords: ["열등감", "인정결핍", "질투"], detail: "완벽해야 한다는 강박에 시달리는 영애. 가시 돋친 말투 뒤에 외로움을 숨기고 있습니다." },
+        { name: "카이 라그노스", role: "❓ 이계 마족", age: "23", emoji: "🐺", className: "검술학부", looks: "적발/호박색 눈/뿔", code: "생존자/약육강식", keywords: ["불안", "야성", "마검사"], detail: "이계에서 건너온 이방인. 돌아갈 곳이 없기에 이곳에서 가장 강해져야만 하는 절박함을 안고 있습니다." },
+        { name: "노아 모르겐슈타인", role: "🏛️ 저주받은 백작가", age: "21", emoji: "🌑", className: "어둠마법", looks: "흑발/오드아이", code: "회피형/자기파괴적", keywords: ["저주", "시한부", "구원"], detail: "자신의 저주가 타인을 해칠까 봐 밀어내는 소년. 누군가 자신을 붙잡아주길 간절히 바라고 있습니다." }
+      ],
+      "3학년": [
+        { name: "백운 연", role: "🐉 연 왕국 태자", age: "23", emoji: "🌙", className: "연금술", looks: "긴 흑발/흑안", code: "관조자/예의바른 소외", keywords: ["향수", "정중", "신비"], detail: "멀리 동방에서 온 귀객. 완벽한 예의로 선을 긋지만 고향에 대한 그리움을 품고 있습니다." },
+        { name: "아르카 벨세리아", role: "🏛️ 학생회장/백작령", age: "24", emoji: "👑", className: "마법이론", looks: "보라 머리/적안", code: "완벽주의/질서중심", keywords: ["책임감", "통제", "드릴머리"], detail: "아카데미의 질서를 상징하는 인물. 규칙 아래 자신의 진심을 억누르며 살아갑니다." },
+        { name: "루시안 아스트람", role: "🪄 차기 마탑주", age: "24", emoji: "🔮", className: "마법학부", looks: "백발/자안", code: "나르시시스트/효율우선", keywords: ["천재", "공감결여", "집착"], detail: "모든 것을 효율로 계산하는 천재 마법사. 당신이라는 '변수'를 만난 후 계산이 꼬이기 시작합니다." },
+        { name: "이안 크로스펠", role: "🏛️ 몰락 공작가", age: "24", emoji: "⚙️", className: "검술학부", looks: "애쉬베이지/회안", code: "실용주의/생존제일", keywords: ["상실감", "리더", "현실적"], detail: "가문의 몰락 후 오직 생존만을 위해 달려온 기사. 감정 표현이 서툴지만 동료를 지키는 마음은 진심입니다." }
+      ],
+      "4학년": [
+        { name: "미카엘 발레리온", role: "✝️ 성기사단장 후보", age: "25", emoji: "⚔️", className: "신성검술", looks: "은발/금안", code: "수도자/금욕적", keywords: ["도덕", "억눌린 본능", "갭모에"], detail: "신전의 기대를 한 몸에 받는 성기사. 완벽한 도덕성 뒤에 뜨거운 본능을 억누르고 있습니다." },
+        { name: "테오도르 벨로아", role: "🏛️ 소공작", age: "26", emoji: "📚", className: "인문학부", looks: "브라운/녹안", code: "안정형/헌신적", keywords: ["다정남", "열등감", "중재자"], detail: "모두에게 다정한 아카데미의 선배. 하지만 형에게 밀려 차남으로 살아온 열등감이 뿌리 깊게 박혀 있습니다." }
+      ]
+    };
+
+    // =============================
+    // Logic
+    // =============================
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
+
+    let currentPage = 0;
+    let activeGrade = "1학년";
+    let bgmOn = false;
+
+    // BGM
+    const bgm = $("#bgm");
+    $("#btnBgm").onclick = () => {
+      bgmOn = !bgmOn;
+      $("#btnBgm").textContent = `BGM: ${bgmOn ? "ON" : "OFF"}`;
+      bgmOn ? bgm.play() : bgm.pause();
+    };
+
+    // Navigation
+    function updatePage() {
+      $$(".page").forEach((p, i) => p.classList.toggle("active", i === currentPage));
+      $("#prevBtn").setAttribute("aria-disabled", currentPage === 0);
+      $("#nextBtn").setAttribute("aria-disabled", currentPage === 2);
+      if(currentPage === 1) startTyping();
     }
-  }
-</script>
 
+    $("#nextBtn").onclick = () => { if(currentPage < 2) { currentPage++; updatePage(); } };
+    $("#prevBtn").onclick = () => { if(currentPage > 0) { currentPage--; updatePage(); } };
+    $("#enterBtn").onclick = () => { currentPage = 1; updatePage(); if(!bgmOn) $("#btnBgm").click(); };
+
+    // Typing
+    let idx = 0;
+    function startTyping() {
+      if(idx > 0) return;
+      function type() {
+        if(idx < WORLD_DETAIL.length) {
+          $("#worldText").textContent += WORLD_DETAIL[idx++];
+          setTimeout(type, 15);
+        } else {
+          $("#worldCursor").style.display = "none";
+        }
+      }
+      type();
+    }
+    $("#worldTyping").onclick = () => {
+      $("#worldText").textContent = WORLD_DETAIL;
+      idx = WORLD_DETAIL.length;
+      $("#worldCursor").style.display = "none";
+    };
+
+    // Characters
+    function renderTabs() {
+      const container = $("#gradeTabs");
+      container.innerHTML = "";
+      ["1학년", "2학년", "3학년", "4학년"].forEach(g => {
+        const btn = document.createElement("button");
+        btn.className = `tab ${activeGrade === g ? "active" : ""}`;
+        btn.textContent = g;
+        btn.onclick = () => { activeGrade = g; renderTabs(); renderCards(); };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderCards() {
+      const container = $("#cardGrid");
+      container.innerHTML = "";
+      (CHARACTERS[activeGrade] || []).forEach(c => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="portrait"></div>
+          <div style="flex:1">
+            <p class="name">${c.emoji} ${c.name}</p>
+            <p class="meta">${c.role} · ${c.age}세</p>
+            <div class="tags">${c.keywords.map(k => `<span class="tag">#${k}</span>`).join("")}</div>
+          </div>
+        `;
+        card.onclick = () => openModal(c);
+        container.appendChild(card);
+      });
+    }
+
+    function openModal(c) {
+      $("#charTitle").textContent = `${c.emoji} ${c.name} (${c.className})`;
+      $("#charBody").innerHTML = `
+        <div class="twoCol">
+          <div class="box">
+            <b style="color:var(--accent)">[캐릭터 소갯말]</b><br><br>${c.detail}
+          </div>
+          <div class="box">
+            <b style="color:var(--accent)">[상세 정보]</b><br><br>
+            • 외양: ${c.looks}<br>
+            • 성격: ${c.code}<br>
+            • 키워드: ${c.keywords.join(", ")}
+          </div>
+        </div>
+      `;
+      $("#charModal").classList.add("open");
+    }
+
+    $("#closeChar").onclick = () => $("#charModal").classList.remove("open");
+    
+    // Init
+    $("#genreBox").textContent = GENRE_TEXT;
+    $("#systemBox").textContent = SYSTEM_TEXT;
+    const pillBox = $("#nationPills");
+    NATIONS.forEach(n => {
+      const p = document.createElement("div");
+      p.className = "pill";
+      p.textContent = n.key;
+      pillBox.appendChild(p);
+    });
+
+    renderTabs();
+    renderCards();
+  </script>
 </body>
 </html>
 Add initial website
