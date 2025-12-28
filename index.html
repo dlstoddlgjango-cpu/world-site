@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>World Archive</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0e0e14;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    #intro {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      font-size: 20px;
+      padding: 14px 28px;
+      cursor: pointer;
+    }
+    #world {
+      display: none;
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="intro">
+  <button onclick="enterWorld()">세계에 들어가기</button>
+</div>
+
+<div id="world">
+  <h1>세계관</h1>
+  <p id="text"></p>
+</div>
+
+<script>
+  const text = "이 세계는 기억과 인연으로 구성된 세계다...";
+  let i = 0;
+
+  function enterWorld() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("world").style.display = "block";
+    typeText();
+  }
+
+  function typeText() {
+    if (i < text.length) {
+      document.getElementById("text").innerHTML += text[i];
+      i++;
+      setTimeout(typeText, 50);
+    }
+  }
+</script>
+
+</body>
+</html>
+Add initial website
