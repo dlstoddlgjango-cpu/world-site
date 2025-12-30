@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>아르카디아 아카데미 타임즈 - 신입생 특별호</title>
+
+  <!-- 세련된 폰트 적용 (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+KR:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a15;
+      --panel:#0d0d1ecc;
+      --panel2:#0e0f1fee;
+      --text:#eff0ff;
+      --muted:#b4b5d2;
+      --line:#2d2e4f;
+      --accent:#7b9aff;
+      --accent2:#b68fff;
+      --gold:#f4d58d;
+      --shadow: 0 25px 60px rgba(0,0,0,.65), 0 8px 20px rgba(0,0,0,.4);
+      --radius: 20px;
+    }
+    
+    *{box-sizing:border-box; margin:0; padding:0;}
+
+    /* ============================================
+       📱 iOS 최적화 (폰트 크기 자동 조절 방지)
+       ============================================ */
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    
+    body{
+      min-height:100vh;
+      color:var(--text);
+      font-family: 'Noto Serif KR', 'Cormorant Garamond', serif;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(123,154,255,.15), transparent 50%),
+        radial-gradient(circle at 85% 20%, rgba(182,143,255,.12), transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(244,213,141,.08), transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(123,154,255,.10), transparent 45%),
+        linear-gradient(180deg, #05050a, #0a0a15 40%, #05050a);
+      background-attachment: fixed;
+      animation: subtleGlow 20s ease-in-out infinite;
+    }
+    
+    @keyframes subtleGlow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.05); }
+    }
+    
+    a{color:inherit; text-decoration:none;}
+    
+    .wrap{
+      max-width: 1150px; 
+      margin: 0 auto; 
+      padding: 32px 20px 80px;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 신문 헤더 스타일 */
+    .newspaper-header {
+      text-align: center;
+      border-bottom: 3px double var(--gold);
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .newspaper-header::after {
+      content: "✦";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg);
+      padding: 0 15px;
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .newspaper-title {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      font-family: 'Playfair Display', 'Noto Serif KR', serif;
+      background: linear-gradient(135deg, var(--gold), var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 12px 0;
+      text-shadow: 0 0 30px rgba(244,213,141,.3);
+    }
+    .newspaper-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .newspaper-date {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* 상단바 */
+    .topbar{
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      gap:16px; 
+      margin-bottom:24px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+    .brand{
+      display:flex; 
+      align-items:center; 
+      gap:12px; 
+      font-weight:700; 
+      letter-spacing:.5px;
+    }
+    .brandLogo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.15);
+      background: linear-gradient(135deg, rgba(123,154,255,.2), rgba(182,143,255,.15));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 4px 12px rgba(123,154,255,.2);
+    }
+    .badge{
+      font-size:11px;
+      color:var(--muted);
+      padding:7px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      font-weight: 500;
+    }
+    .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:11px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      transition: all .2s ease;
+      user-select:none;
+      font-weight: 500;
+    }
+    .btn:hover{ 
+      transform: translateY(-2px); 
+      border-color: var(--accent); 
+      box-shadow: 0 6px 20px rgba(123,154,255,.3);
+    }
+    .btn.primary{
+      border-color: rgba(123,154,255,.7);
+      background: linear-gradient(135deg, rgba(123,154,255,.25), rgba(182,143,255,.18));
+      box-shadow: 0 4px 15px rgba(123,154,255,.2);
+    }
+    .btn.tiny{ 
+      padding:9px 12px; 
+      font-size:13px; 
+      border-radius:12px;
+    }
+
+    /* 메인 스테이지 */
+    .stage{
+      position:relative;
+      background: var(--panel);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .stageInner{
+      position:relative; 
+      padding: 28px 24px; 
+      min-height: 600px;
+    }
+    .page{ display:none; }
+    .page.active{ 
+      display:block; 
+      animation: pageSlide 0.4s ease-out;
+    }
+    @keyframes pageSlide {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .headline{
+      font-size: 36px;
+      margin: 8px 0 16px;
+      letter-spacing:1px; 
+      font-weight: 900;
+      text-align: center;
+      font-family: 'Playfair Display', 'Noto Serif KR', serif;
+      background: linear-gradient(to right, var(--gold), var(--accent)); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 14px;
+    }
+    .sub{
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height:1.7;
+      text-align: center;
+      font-style: italic;
+      font-size: 15px;
+    }
+
+    /* 신문 기사 스타일 */
+    .article-container {
+      background: var(--panel2);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 28px;
+      line-height: 1.9;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .article-headline {
+      font-size: 26px;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin: 0 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: .5px;
+    }
+    .article-subhead {
+      font-size: 17px;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 24px 0 12px 0;
+      font-family: 'Noto Serif KR', serif;
+    }
+    .article-text {
+      color: var(--text);
+      margin: 0 0 16px 0;
+      font-size: 15px;
+      line-height: 2;
+    }
+    .article-highlight {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+    .article-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .article-box {
+      background: rgba(0,0,0,.3);
+      border-left: 4px solid var(--accent);
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+    .article-box-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 14px 0;
+    }
+    .article-box-item {
+      margin: 10px 0;
+      padding-left: 14px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+      position: relative;
+    }
+    .article-box-item:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* 네비게이션 화살표 */
+    .navArrows{
+      position:absolute; 
+      inset: 0; 
+      pointer-events:none;
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      padding: 0 12px;
+    }
+    .arrow{
+      pointer-events:auto; 
+      width: 48px; 
+      height: 48px; 
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.15); 
+      background: rgba(0,0,0,.4);
+      backdrop-filter: blur(8px);
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      cursor:pointer; 
+      transition:.2s ease;
+      font-size: 18px;
+    }
+    .arrow:hover:not([aria-disabled="true"]){ 
+      border-color: var(--accent); 
+      background: rgba(123,154,255,.15);
+      box-shadow: 0 4px 15px rgba(123,154,255,.3);
+    }
+    .arrow[aria-disabled="true"]{opacity:0; cursor:default;}
+
+    /* Pills */
+    .pillRow{
+      display:flex; 
+      gap:10px; 
+      flex-wrap:wrap; 
+      margin: 16px 0 24px; 
+      justify-content: center;
+    }
+    .pill{
+      display:flex; 
+      align-items:center; 
+      gap:10px; 
+      padding: 12px 18px;
+      border-radius: 999px; 
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25); 
+      color: var(--text); 
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+    .pill:hover {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(244,213,141,.15), rgba(123,154,255,.1));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(244,213,141,.3);
+    }
+    }
+    
+    /* 탭 */
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 18px 0 20px;
+    }
+    .tab{
+      padding: 10px 16px; 
+      border-radius: 999px; 
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03); 
+      cursor:pointer; 
+      font-size: 14px; 
+      color: var(--muted);
+      transition: all .2s ease;
+      font-weight: 500;
+    }
+    .tab:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .tab.active{
+      color: var(--text); 
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(123,154,255,.25), rgba(182,143,255,.18));
+      box-shadow: 0 4px 12px rgba(123,154,255,.2);
+    }
+    /* 교수진 탭 특별 스타일 */
+    .tab.faculty {
+      border-color: rgba(244,213,141,.3);
+    }
+    .tab.faculty.active {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(244,213,141,.25), rgba(123,154,255,.18));
+      box-shadow: 0 4px 12px rgba(244,213,141,.3);
+    }
+    
+    /* 캐릭터 그리드 */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card{
+      grid-column: span 6; 
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1); 
+      border-radius: 18px;
+      padding: 16px; 
+      cursor:pointer; 
+      transition:.3s ease;
+      display:flex; 
+      gap:14px; 
+      align-items:flex-start;
+    }
+    .card:hover{
+      transform: translateY(-4px); 
+      border-color: var(--accent); 
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 8px 25px rgba(123,154,255,.25);
+    }
+    /* 교수진 카드 특별 스타일 */
+    .card.faculty:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 25px rgba(244,213,141,.25);
+    }
+    
+    /* ⭐ 캐릭터 초상화 - 이미지를 여기에 넣으세요! */
+    .portrait{
+      width:72px;
+      height:72px;
+      border-radius:16px; 
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.15); 
+      background: linear-gradient(135deg, rgba(123,154,255,.1), rgba(0,0,0,.3));
+      flex: 0 0 auto;
+      position: relative;
+    }
+    .portrait::before {
+      content: "👤";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      opacity: 0.3;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .name{
+      font-weight:800; 
+      font-size: 17px; 
+      margin:0 0 6px 0;
+    }
+    .meta{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.5;
+    }
+    .tags{
+      display:flex;
+      gap:7px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .tag{
+      font-size:11px;
+      color: var(--accent); 
+      border:1px solid rgba(123,154,255,.25); 
+      border-radius:5px; 
+      padding: 3px 7px; 
+      background: rgba(123,154,255,.08);
+    }
+
+    /* 모달 */
+    .overlay{
+      position:fixed; 
+      inset:0; 
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(10px); 
+      display:none; 
+      align-items:center;
+      justify-content:center; 
+      padding: 24px; 
+      z-index: 100;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .overlay.open{ display:flex; }
+    .modal{
+      width:min(900px, 100%); 
+      max-height: 90vh; 
+      overflow-y: auto;
+      background: #0e0f1f; 
+      border:1px solid var(--line); 
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,.8);
+    }
+    .modalHeader{ 
+      padding: 20px 24px; 
+      border-bottom:1px solid var(--line); 
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between;
+      background: rgba(255,255,255,.02);
+    }
+    .modalBody{
+      padding: 28px;
+    }
+    
+    /* ⭐ 모달 내 캐릭터 정보 레이아웃 */
+    .modalCharInfo {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .modalCharImage {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      background: linear-gradient(135deg, rgba(123,154,255,.1), rgba(0,0,0,.3));
+      position: relative;
+    }
+    .modalCharImage::before {
+      content: "👤";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      opacity: 0.2;
+    }
+    .modalCharImage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .twoCol{
+      display:grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap:20px;
+    }
+    .box{ 
+      background: rgba(255,255,255,.03); 
+      border:1px solid var(--line); 
+      border-radius: 14px; 
+      padding: 18px; 
+      line-height:1.8; 
+      color: var(--muted); 
+      font-size: 14px;
+    }
+    
+    /* ============================================
+       🎚️ 볼륨 슬라이더 스타일
+       ============================================ */
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+    }
+    .volume-label {
+      font-size: 13px;
+      color: var(--muted);
+      min-width: 40px;
+    }
+    .volume-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,.1);
+      outline: none;
+    }
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(123,154,255,.4);
+    }
+    .volume-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 4px 12px rgba(123,154,255,.6);
+    }
+    .volume-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 2px solid #fff;
+    }
+
+    /* 이미지 팝업 */
+    .image-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.95);
+      backdrop-filter: blur(15px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      cursor: zoom-out;
+    }
+    .image-popup-overlay.open { display: flex; }
+    .image-popup-content { max-width: 90vw; max-height: 90vh; }
+    .image-popup-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.8);
+    }
+    .portrait img, .modalCharImage img { cursor: zoom-in; transition: all 0.3s; }
+    .portrait img:hover, .modalCharImage img:hover { filter: brightness(1.1); transform: scale(1.05); }
+    .portrait { width: 120px; height: 120px; }
+    .modalCharImage { width: 100%; max-width: 300px; aspect-ratio: 1/1; }
+
+    /* 국가 정보 모달 */
+    .nation-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 150;
+      padding: 20px;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .nation-modal-overlay.open { display: flex; }
+    .nation-modal {
+      width: min(800px, 100%);
+      max-height: 85vh;
+      overflow-y: auto;
+      background: linear-gradient(135deg, #0e0f1f, #1a1b2e);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 24px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.9);
+      animation: slideUp 0.4s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nation-modal-header {
+      padding: 28px 32px;
+      border-bottom: 2px solid var(--line);
+      background: rgba(255,255,255,.02);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+    .nation-title {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 8px 0;
+      font-family: "Playfair Display", serif;
+    }
+    .nation-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.6;
+    }
+    .nation-modal-body {
+      padding: 32px;
+      /* 🖼️ 배경 이미지 스타일 */
+      position: relative;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    /* 🖼️ 배경 이미지 50% 투명도 오버레이 */
+    .nation-modal-body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: inherit;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* 모든 콘텐츠를 배경 위로 */
+    .nation-modal-body > * {
+      position: relative;
+      z-index: 1;
+    }
+    .nation-section {
+      margin-bottom: 28px;
+    }
+    .nation-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 12px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(123,154,255,.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nation-section-content {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .nation-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .nation-info-item {
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .nation-info-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .nation-info-value {
+      font-size: 16px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .nation-close-btn {
+      position: sticky;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 20px auto 0;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(123,154,255,.3);
+      transition: all 0.3s;
+      display: block;
+    }
+    .nation-close-btn:hover {
+    /* ============================================
+       📱 iOS 터치 최적화
+       ============================================ */
+    button, a, .pill, .card, .btn {
+      -webkit-tap-highlight-color: rgba(123,154,255,.2);
+      touch-action: manipulation;
+    }
+    
+    /* ============================================
+       📱 반응형 폰트 크기 (자동 조절)
+       ============================================ */
+    @media (max-width: 960px) {
+      html { font-size: 15px !important; }
+      .nation-title { font-size: clamp(24px, 5vw, 28px) !important; }
+      .nation-section-title { font-size: clamp(15px, 3.5vw, 16px) !important; }
+      .portrait { width: 100px; height: 100px; }
+      .modalCharImage { max-width: 250px; }
+    }
+    
+    /* ============================================
+       📱 모바일 최적화 (스마트폰)
+       ============================================ */
+    @media (max-width: 760px){ 
+      html { font-size: 14px !important; }
+      
+      /* 기본 레이아웃 */
+      .card{ grid-column: span 12 !important; } 
+      .twoCol{ grid-template-columns: 1fr !important; }
+      .article-columns { grid-template-columns: 1fr !important; }
+      .newspaper-title { 
+        font-size: clamp(24px, 6vw, 32px) !important; 
+        line-height: 1.2 !important;
+      }
+      
+      /* 캐릭터 카드 이미지 */
+      .portrait { 
+        width: 80px !important; 
+        height: 80px !important; 
+      }
+      .portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      /* 캐릭터 모달 */
+      .modal {
+        width: 95vw !important;
+        max-width: 95vw !important;
+      }
+      .modalCharInfo { 
+        grid-template-columns: 1fr !important; 
+        gap: 16px;
+      }
+      .modalCharImage { 
+        max-width: 200px !important;
+        aspect-ratio: 1/1 !important;
+        margin: 0 auto;
+      }
+      .modalCharImage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      /* 국가 모달 */
+      .nation-modal {
+        width: 95vw !important;
+        max-height: 90vh !important;
+        margin: 0 auto;
+      }
+      .nation-modal-header {
+        padding: 16px !important;
+      }
+      .nation-title { 
+        font-size: clamp(18px, 5vw, 22px) !important; 
+        line-height: 1.3 !important;
+        word-break: keep-all;
+      }
+      .nation-subtitle { 
+        font-size: clamp(12px, 3vw, 14px) !important; 
+        line-height: 1.5 !important;
+      }
+      .nation-modal-body {
+        padding: 16px !important;
+      }
+      .nation-section-title { 
+        font-size: clamp(14px, 3.5vw, 16px) !important;
+        word-break: keep-all;
+      }
+      .nation-section-content { 
+        font-size: clamp(12px, 3vw, 14px) !important; 
+        line-height: 1.7 !important;
+        word-break: keep-all;
+      }
+      .nation-info-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 10px !important;
+      }
+      .nation-info-item {
+        padding: 12px !important;
+      }
+      .nation-info-label { 
+        font-size: clamp(10px, 2.5vw, 12px) !important; 
+      }
+      .nation-info-value { 
+        font-size: clamp(13px, 3vw, 15px) !important; 
+      }
+      .nation-close-btn {
+        padding: 12px 24px !important;
+        font-size: clamp(13px, 3vw, 15px) !important;
+      }
+      
+      /* 컨트롤 버튼 */
+      .controls {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      .volume-slider { 
+        width: 60px !important; 
+      }
+      .volume-label {
+        font-size: clamp(10px, 2.5vw, 12px) !important;
+      }
+      .btn {
+        font-size: clamp(12px, 3vw, 14px) !important;
+        padding: 10px 16px !important;
+      }
+      
+      /* 이미지 팝업 */
+      .image-popup-content {
+        max-width: 95vw !important;
+        max-height: 80vh !important;
+      }
+      
+      /* 기타 텍스트 */
+      .name { 
+        font-size: clamp(14px, 3.5vw, 16px) !important;
+        word-break: keep-all;
+      }
+      .meta { 
+        font-size: clamp(11px, 2.8vw, 13px) !important; 
+      }
+      .tag { 
+        font-size: clamp(9px, 2.2vw, 11px) !important; 
+      }
+      
+      /* 내비게이션 */
+      .nav {
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      
+      /* 헤더 */
+      .header {
+        padding: 20px 16px !important;
+      }
+      
+      /* pill 국가 버튼 */
+      .pill {
+        font-size: clamp(11px, 2.8vw, 13px) !important;
+        padding: 8px 12px !important;
+      }
+      
+      /* 모든 요소 터치 최적화 */
+      * {
+        -webkit-tap-highlight-color: rgba(123,154,255,.2);
+      }
+    }
+    
+    /* ============================================
+       📱 초소형 최적화 (iPhone SE 등)
+       ============================================ */
+    @media (max-width: 480px) {
+      html { font-size: 13px !important; }
+      
+      .newspaper-title { 
+        font-size: clamp(20px, 5.5vw, 28px) !important; 
+      }
+      .nation-title { 
+        font-size: clamp(16px, 4.5vw, 20px) !important; 
+      }
+      .nation-subtitle { 
+        font-size: clamp(11px, 2.8vw, 13px) !important; 
+      }
+      .nation-section-title { 
+        font-size: clamp(13px, 3.2vw, 15px) !important; 
+      }
+      .nation-section-content { 
+        font-size: clamp(11px, 2.8vw, 13px) !important; 
+      }
+      
+      .portrait { 
+        width: 64px !important; 
+        height: 64px !important; 
+      }
+      .modalCharImage { 
+        max-width: 160px !important; 
+      }
+      
+      .nation-modal-body {
+        padding: 12px !important;
+      }
+      .nation-modal-header {
+        padding: 12px !important;
+      }
+      
+      .volume-slider { 
+        width: 50px !important; 
+      }
+      
+      .btn {
+        font-size: clamp(11px, 2.8vw, 13px) !important;
+        padding: 8px 12px !important;
+      }
+    }
+    
+    /* ============================================
+       📱 가로 모드 최적화
+       ============================================ */
+    @media (max-width: 960px) and (orientation: landscape) {
+      .nation-modal {
+        max-height: 95vh !important;
+      }
+      .modal {
+        max-height: 95vh !important;
+      }
+    }
+      .newspaper-title { font-size: 36px; }
+      .modalCharInfo { grid-template-columns: 1fr; }
+      .modalCharImage { aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="build-badge" style="position:fixed; right:14px; bottom:14px; padding:9px 12px; border-radius:12px; background:rgba(0,0,0,.65); color:#fff; font:11px/1.2 system-ui; z-index:99999; border: 1px solid rgba(255,255,255,.1);">
+    build 2025-12-29-12-iOS-FINAL
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brandLogo">
+          <div style="width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow: 0 0 15px rgba(123,154,255,.5);"></div>
+        </div>
+        <div>아르카디아 아카데미</div>
+        <div class="badge">로판 · 아카데미 · 헌터물</div>
+      </div>
+      <div class="controls">
+        <button class="btn tiny" id="btnBgm">🎵 BGM: OFF</button>
+        <div class="volume-control">
+          <span class="volume-label">🔊 <span id="volumeValue">30</span>%</span>
+          <input type="range" min="0" max="100" value="30" class="volume-slider" id="volumeSlider">
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stageInner">
+        <!-- PAGE 0: 입학 안내 -->
+        <section class="page active" data-page="0">
+          <div class="newspaper-header">
+            <div class="newspaper-subtitle">Arcadia Academy Times</div>
+            <div class="newspaper-title">아카데미 타임즈</div>
+            <div class="newspaper-date">제1025호 · 신입생 특별판 · Arcadia Year 1025</div>
+          </div>
+          
+          <div class="headline">✨ 신입생 환영 특집 ✨</div>
+          <p class="sub">대륙 최고의 전력 양성소, 아르카디아 아카데미에 오신 것을 환영합니다</p>
+          
+          <div class="article-container" style="text-align: center;">
+            <p class="article-text" style="font-size: 16px; margin-bottom: 24px;">
+              루센 대륙의 6대 국가에서 모여든 재원들이 이곳에서 하나가 됩니다.<br>
+              당신은 어느 나라 출신이신가요?
+            </p>
+            <div class="pillRow" id="nationPills"></div>
+            <button class="btn primary" id="enterBtn" style="padding: 18px 36px; font-weight: bold; font-size: 17px;">
+              🚪 교문에 들어서기
+            </button>
+          </div>
+        </section>
+
+        <!-- PAGE 1: 세계관 -->
+        <section class="page" data-page="1">
+          <div class="newspaper-header">
+            <div class="newspaper-subtitle">Special Report</div>
+            <div class="newspaper-title">세계관 특집 기사</div>
+            <div class="newspaper-date">필독 기사 · 아카데미 정보국 발행</div>
+          </div>
+
+          <div class="article-container">
+            <div class="article-headline">
+              🏰 루센 대륙 긴급 보고서
+            </div>
+
+            <p class="article-text">
+              루센은 찬란한 마법 문명과 엄격한 귀족제가 공존하는 땅입니다. 
+              화려한 무도회와 우아한 사교계 뒤에는 <span class="article-highlight">차원의 벽 붕괴</span>라는 
+              거대한 재난이 도사리고 있습니다.
+            </p>
+
+            <div class="article-subhead">👾 헌터의 숙명: 차원 붕괴의 그림자</div>
+            <p class="article-text">
+              불안정한 차원의 벽을 넘어 마물이 쏟아질 때, 아카데미 학생들은 '헌터'가 되어 전장에 섭니다. 
+              마물을 토벌하고 얻는 <span class="article-highlight">'마석'</span>은 단순한 전리품이 아닙니다. 
+              그것은 부와 명예의 상징이자, 자신의 가치를 증명하는 사교의 장이기도 합니다.
+            </p>
+
+            <p class="article-text" style="padding: 14px; background: rgba(123,154,255,.08); border-radius: 10px; border-left: 3px solid var(--accent);">
+              <strong style="color: var(--accent);">⚠️ 기자 주:</strong> 
+              토벌 임무는 생존 훈련이자 계급 투쟁의 연장선입니다. 
+              전장에서 맺은 인연은 평생을 좌우합니다.
+            </p>
+
+            <div class="article-columns">
+              <div class="article-box">
+                <div class="article-box-title">⚔️ 클래스 가이드</div>
+                <div class="article-box-item">
+                  <strong>마법사:</strong> 마탑 중심. 차원 분석 및 정화 담당
+                </div>
+                <div class="article-box-item">
+                  <strong>기사:</strong> 귀족의 방패. 최전선 핵심 전력
+                </div>
+                <div class="article-box-item">
+                  <strong>성직자:</strong> 신전 소속. 오염 정화 및 민심 통제
+                </div>
+                <div class="article-box-item">
+                  <strong>정령사:</strong> 자연 공명자. 개인 역량 차이 극심
+                </div>
+              </div>
+
+              <div class="article-box">
+                <div class="article-box-title">✨ 장르 & 시스템 안내</div>
+                <div class="article-box-item">
+                  로코 아카데미 & 서바이벌 헌터물
+                </div>
+                <div class="article-box-item">
+                  긴장감 넘치는 역하렘 군상극
+                </div>
+                <div class="article-box-item">
+                  일상의 설렘과 전장의 치열함 공존
+                </div>
+                <div class="article-box-item">
+                  <strong>"차별 엄금"</strong> 그러나 보이지 않는 계급 갈등
+                </div>
+              </div>
+            </div>
+
+            <div class="article-subhead">🌸 아르카디아의 일상과 전장</div>
+            <p class="article-text">
+              강의실에서의 티격태격하는 소동이 전장에서의 신뢰로 이어집니다. 
+              우아한 도서관 한켠에서 나눈 대화가 생사의 갈림길에서 손을 잡게 만듭니다. 
+            </p>
+            <p class="article-text" style="text-align: center; font-size: 18px; color: var(--accent2); font-weight: 600; margin-top: 24px;">
+              당신은 이 치열한 아카데미에서 누구의 손을 잡겠습니까?
+            </p>
+          </div>
+        </section>
+
+        <!-- PAGE 2: 재학생 명부 -->
+        <section class="page" data-page="2">
+          <div class="newspaper-header">
+            <div class="newspaper-subtitle">Student Directory</div>
+            <div class="newspaper-title">재학생 명부</div>
+            <div class="newspaper-date">인물 탐구 · 학생회 편집부</div>
+          </div>
+
+          <div class="headline">📋 인물 탐구 특집</div>
+          <p class="sub">다양한 배경을 가진 동료들과 인연을 맺어보세요</p>
+          <div class="tabs" id="gradeTabs"></div>
+          <div class="grid" id="cardGrid"></div>
+        </section>
+
+        <div class="navArrows">
+          <div class="arrow" id="prevBtn">◀</div>
+          <div class="arrow" id="nextBtn">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="charModal">
+    <div class="modal">
+      <div class="modalHeader">
+        <p style="margin:0; font-weight:bold; font-size:18px;" id="charTitle"></p>
+        <button class="btn tiny" id="closeChar">✕ 닫기</button>
+      </div>
+      <div class="modalBody" id="charBody"></div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       🎵 BGM 설정 (Cloudflare Pages 호스팅)
+       ============================================
+       아르카디아 아카데미 테마곡
+       
+       ✅ 작동 방식:
+       1. "교문에 들어서기" 버튼 클릭 시 자동 재생
+       2. 우측 상단 BGM 버튼으로 ON/OFF 제어
+       3. 자동 루프 재생 (loop 속성)
+       4. 볼륨 50% 고정
+       
+       ⚠️ 브라우저 자동재생 정책:
+       - 최신 브라우저는 사용자 상호작용 전 자동재생을 차단합니다
+       - 버튼 클릭 후 재생되는 것이 정상입니다
+       ============================================ -->
+
+  <!-- 이미지 팝업 오버레이 -->
+  <div class="image-popup-overlay" id="imagePopup">
+    <div class="image-popup-content">
+      <img id="popupImage" src="" alt="Character Image">
+    </div>
+  </div>
+
+  <!-- 국가 정보 모달 -->
+  <div class="nation-modal-overlay" id="nationModal">
+    <div class="nation-modal">
+      <div class="nation-modal-header">
+        <div class="nation-title" id="nationTitle"></div>
+        <div class="nation-subtitle" id="nationSubtitle"></div>
+      </div>
+      <div class="nation-modal-body" id="nationBody"></div>
+    </div>
+  </div>
+  <audio id="main-bgm" loop preload="auto">
+    <source src="https://21bab544.arcadia-6sb.pages.dev/아르카디아%20아카데미%20테마곡.mp3" type="audio/mpeg">
+    <!-- Cloudflare Pages에서 안정적으로 호스팅됩니다 -->
+  </audio>
+
+  <script>
+    console.log("🚀 Build: 2025-12-29-06-CLOUDFLARE");
+    console.log("🎵 BGM: Cloudflare Pages 호스팅");
+    console.log("💡 BGM이 재생되지 않으면 교문 버튼이나 BGM 버튼을 클릭하세요!");
+
+    // =============================
+    // 데이터
+    // =============================
+    const NATIONS = [
+      { 
+        key: "🏛️ 로벨 제국",
+        fullName: "로벨 제국",
+        emoji: "🏛️",
+        subtitle: "귀족과 마법사가 서로를 견제하며 균형을 유지하는 중앙제국",
+        symbol: "왕관과 월계수",
+        leader: "황제 레오폴트 4세",
+        religion: "명목상 발테르 신앙, 실질적으로는 비종교적",
+        // 🖼️ 배경 이미지 URL (Imgur 등에 업로드 후 주소 입력)
+        // 권장: 왕궁, 귀족, 마법탑 이미지
+        backgroundImage: "",
+        core: "귀족의 정치·군권과 마법사의 지식·기술권이 정면충돌하지 않도록 제도로 균형을 맞춘 국가입니다. 귀족은 병력, 영지, 세금, 기사단을 장악하고 있으며, 마법사는 마나 연구, 차원벽 분석, 봉인술, 정화 기술을 독점하고 있어 어느 한쪽이 폭주하면 국가 자체가 위태로워지므로 '상호 의존 구조'가 확립되어 있습니다.",
+        academy: "아카데미 주변의 치안, 보급, 법 적용의 큰 틀을 제국이 관할합니다. 표면적으로는 독립성과 중립을 존중하지만, 인허가, 물자, 인력 흐름을 통해 간접적으로 영향력을 행사합니다.",
+        politics: "아카데미에서 육성한 인재를 외교, 정보, 전선 지휘, 마도공학 핵심 분야에 배치하여 다른 국가와의 경쟁에서 우위를 점합니다. 즉, 아카데미는 '전력 양성소'인 동시에 '국가 경쟁력 강화를 위한 인재 파이프라인'입니다.",
+        detail: "균형형 통치자로 평가받으며, 귀족과 마탑이 선을 넘지 않도록 조율하는 능력이 뛰어납니다. 아카데미에 대해서는 '중립 존중' 발언을 하지만, 내부적으로는 인재 선점 경쟁을 결코 포기하지 않습니다."
+      },
+      { 
+        key: "🐉 대 연제국",
+        fullName: "대 연제국",
+        emoji: "🐉",
+        subtitle: "혈통이 곧 권력이며, 황실의 의지가 곧 국가의 방향인 동방 황조",
+        symbol: "오룡 문장",
+        leader: "연 태천제",
+        religion: "용신 숭배",
+        // 🖼️ 배경 이미지 URL
+        // 권장: 용, 동양 궁전, 황실 이미지
+        backgroundImage: "",
+        core: "황실 혈통이 '정통성' 그 자체이며, 관료, 귀족, 군대 모두가 황제의 권위 아래 엄격한 계층 구조를 이룹니다. 내부적으로는 황족 및 황자 간 경쟁이 치열하지만, 대외적으로는 견고한 단일 국가로 보입니다.",
+        academy: "아카데미를 완전히 신뢰하지는 않지만, 국제 정세상 무시할 수 없는 '필수 외교 창구'로 봅니다. 대연 출신 학생 및 교관에게는 대체로 관찰자, 사절, 정보 수집의 역할이 부여됩니다.",
+        politics: "차원 기술, 마도공학, 전력 운영법이 유출되는 것을 경계합니다. 동시에 아카데미의 전선 경험과 연구 성과를 흡수하려 합니다. 따라서 교류는 하되, 항상 '통제된 교류'만을 허용합니다.",
+        detail: "대외적으로는 강력한 통치자로, 내부적으로는 황자들을 견제하고 균형을 유지하는 냉철한 권력자입니다. 아카데미를 '필요하지만 위험한 존재'로 인식합니다."
+      },
+      { 
+        key: "✝️ 발테르 성국",
+        fullName: "발테르 성국",
+        emoji: "✝️",
+        subtitle: "신앙이 곧 법이며, 정화가 곧 국가의 존재 이유인 신정 국가",
+        symbol: "빛의 십자",
+        leader: "교황 세라핀 7세",
+        religion: "발테르 유일신",
+        core: "'옳고 그름'의 기준이 종교 교리와 직결되어 있으며, 정치, 재판, 사회 규범이 교단의 권위 아래에서 작동합니다. 차원 오염, 저주, 이계 존재 문제는 단순한 재난이 아니라 '성역을 더럽히는 죄악'으로 해석됩니다.",
+        academy: "아카데미의 연구, 실습, 전투가 윤리적 선을 넘지 않는지 교단이 감찰합니다. 특히 마법, 마도공학, 이계 연구는 '위험한 지식'으로 분류되어 충돌이 잦습니다.",
+        politics: "국가의 최우선 목표는 전쟁 승리나 영토 확장이 아닌 '오염을 정화하고 봉인하는 것'입니다. 따라서 타국과 이해관계가 충돌하더라도 '정화가 우선'이라는 논리를 관철시킵니다.",
+        // 🖼️ 배경 이미지 URL
+        // 권장: 교회, 십자가, 빛, 성당 이미지
+        backgroundImage: "",
+        detail: "대외적으로는 '정화의 권위'를, 대내적으로는 분파 통합의 정치적 중심을 담당합니다. 아카데미는 '필요한 수단'이면서 동시에 '오염의 통로'가 될 수 있어 예민하게 주시합니다."
+      },
+      { 
+        key: "🪄 아스트람 마법연방",
+        fullName: "아스트람 마법연방",
+        emoji: "🪄",
+        subtitle: "마탑들의 연합 국가, 귀족보다 연구와 성과를 우선하는 마법사 중심 사회",
+        symbol: "별과 마도진",
+        leader: "대마도사 오르펜",
+        religion: "없음 (개인의 선택)",
+        core: "단일 왕조가 아닌 여러 마탑의 연구 조직이 결합하여 이룬 국가로, '합의와 경쟁'이 공존합니다. 귀족 혈통보다는 능력, 성과, 연구 업적이 사회적 지위를 결정합니다.",
+        academy: "아카데미를 전선 인재 양성소이자 연구 협력 대상으로 봅니다. 공동 연구 및 학술 교류가 활발하지만, 핵심 기술 '특히 차원벽 관련'은 공유를 꺼립니다.",
+        politics: "귀족 권력을 낡은 체제로 간주하며, '실력과 성과 기반 사회'를 이상으로 삼습니다. 따라서 귀족 중심 국가와 협력할 때도 신경전이 발생하기 쉽습니다.",
+        detail: "'연방의 대표'에 가까운 지도자로, 독재자가 아닌 마탑들의 합의로 권한을 행사합니다. 아카데미에 대해서는 협력적이지만, '정치에 휘말리는 것'을 극도로 거부합니다."
+      },
+      { 
+        // 🖼️ 배경 이미지 URL
+        // 권장: 마법진, 별, 마탑, 연구소 이미지
+        backgroundImage: "",
+        key: "🦴 페나르 수인연맹",
+        fullName: "페나르 수인연맹",
+        emoji: "🦴",
+        subtitle: "부족이 모여 만든 자치 연맹, 차별과 편견 속에서 생존과 권리를 요구하는 국가",
+        symbol: "뼈 토템",
+        leader: "대족장 가르룬",
+        religion: "토템 신앙",
+        core: "단일 민족이 아닌 여러 수인 종족 및 부족이 연맹을 구성하는 형태입니다. 중앙 정부의 권한은 상대적으로 약하며, 합의와 관습법의 비중이 큽니다.",
+        academy: "아카데미를 '차별이 공식적으로 금지된 공간'으로 높이 평가합니다. 따라서 실력으로 인정받아 편견을 깨고자 하는 학생들이 많이 지원합니다.",
+        politics: "국제사회에서 수인을 열등하게 보는 시선을 문제 삼으며, 제도적 평등을 강력히 주장합니다. 아카데미 내에서도 '은근한 차별'에 매우 민감하게 반응합니다.",
+        detail: "여러 부족을 조율하는 중재자로서의 역할이 강합니다. 대외적으로는 강경하게 권리를 주장하지만, 내부적으로는 분열 방지가 더 큰 과제입니다."
+      },
+      { 
+        key: "🌲 실바리엘 수림국",
+        fullName: "실바리엘 수림국",
+        emoji: "🌲",
+        // 🖼️ 배경 이미지 URL
+        // 권장: 부족, 토템, 수인, 야생 이미지
+        backgroundImage: "",
+        subtitle: "자연 정령과 공존하는 숲의 왕국, 인간 사회를 근본적으로 불신하는 장수종 국가",
+        symbol: "세계수 잎",
+        leader: "여왕 아일리엔",
+        religion: "자연 정령 신앙",
+        core: "엘프 중심 사회로, 시간 감각과 가치관이 인간과 근본적으로 다릅니다. 인간의 '짧은 수명, 급격한 팽창, 끊임없는 권력 투쟁'을 숲을 위협하는 위험 요소로 봅니다.",
+        academy: "완전한 개방도, 완전한 단절도 아닌 '필요 최소한의 교류'만 허용합니다. 정령학 및 오염 정화 문제로 아카데미와 협력하지만, 인간의 욕망이 숲으로 침투하는 것을 경계합니다.",
+        politics: "타국의 전쟁이나 외교전에 깊이 개입하지 않으려 합니다. 다만 차원 오염이 숲을 침식하는 순간에는 매우 강경하게 대응합니다.",
+        detail: "외교적으로는 냉담하지만, 내부적으로는 숲을 지키기 위한 결단력이 강한 통치자입니다. 아카데미와의 교류는 '위험을 감수한 최소한의 선택'으로 여깁니다."
+      }
+    ];
+    const CHARACTERS = {
+      "1학년": [
+        { 
+          name: "클로에 리넨펠트", 
+          role: "🏛️ 약초학부 신입생", 
+          age: "20", 
+        // 🖼️ 배경 이미지 URL
+        // 권장: 숲, 엘프, 나무, 자연 이미지
+        backgroundImage: "",
+          emoji: "🌱", 
+          className: "약초학부", 
+          looks: "연갈색 머리/연녹안", 
+          code: "소심한 치유계/유리멘탈", 
+          keywords: ["성장", "치유", "로코"], 
+          detail: "재능은 뛰어나지만 자신감이 부족한 치유사. 당황하면 엉뚱한 약초를 내밀어 소동을 일으키곤 합니다.",
+          // imageUrl: ""
+        },
+        { 
+          name: "네아 펠리온", 
+          role: "🦴 수인 고양이족", 
+          age: "21", 
+          emoji: "🐱", 
+          className: "전투학부", 
+          looks: "주황 머리/남색 눈", 
+          code: "호기심형/본능중심", 
+          keywords: ["애정결핍", "직감", "장난"], 
+          detail: "본능에 충실한 트러블 메이커. 금지된 구역일수록 더 깊숙이 파고드는 호기심 대장입니다.",
+          imageUrl: "https://ak-rq.org/%EC%9D%B8%EB%AC%BC%EC%86%8C%EA%B0%9C%EC%9A%A9/1.png"
+        },
+        { 
+          name: "리안 펜릴", 
+          role: "🦴 수인족 후계", 
+          age: "20", 
+          emoji: "🐾", 
+          className: "전투학부", 
+          looks: "은회색 머리/금안", 
+          code: "대형견/일편단심", 
+          keywords: ["충성", "직진", "상처"], 
+          detail: "무뚝뚝해 보이지만 믿음을 준 이에게는 꼬리를 흔드는 충직한 늑대. 수인에 대한 편견을 실력으로 증명하려 합니다.",
+        }
+      ],
+      "2학년": [
+        { 
+          name: "아일린 실바리엘", 
+          role: "🌲 정령사 엘프", 
+          age: "68(22)", 
+          emoji: "🌿", 
+          className: "정령학부", 
+          looks: "연녹발/진녹안", 
+          code: "자연조율자/무심다정", 
+          keywords: ["공존", "정화", "거리감"], 
+          detail: "인간 사회의 속도에 적응 중인 엘프. 무심한 듯 챙겨주는 츤데레 매력이 있습니다.",
+        },
+        { 
+          name: "이사벨라 몽테리온", 
+          role: "🏛️ 후작 영애", 
+          age: "22", 
+          emoji: "🦂", 
+          className: "인문학부", 
+          looks: "플래티넘 블론드/자안", 
+          code: "오만한 귀족/서열중시", 
+          keywords: ["열등감", "인정결핍", "질투"], 
+          detail: "완벽해야 한다는 강박에 시달리는 영애. 가시 돋친 말투 뒤에 외로움을 숨기고 있습니다.",
+        },
+        { 
+          name: "카이 라그노스", 
+          role: "❓ 이계 마족", 
+          age: "23", 
+          emoji: "🐺", 
+          className: "검술학부", 
+          looks: "적발/호박색 눈/뿔", 
+          code: "생존자/약육강식", 
+          keywords: ["불안", "야성", "마검사"], 
+          detail: "이계에서 건너온 이방인. 돌아갈 곳이 없기에 이곳에서 가장 강해져야만 하는 절박함을 안고 있습니다.",
+        },
+        { 
+          name: "노아 모르겐슈타인", 
+          role: "🏛️ 저주받은 백작가", 
+          age: "21", 
+          emoji: "🌑", 
+          className: "어둠마법", 
+          looks: "흑발/오드아이", 
+          code: "회피형/자기파괴적", 
+          keywords: ["저주", "시한부", "구원"], 
+          detail: "자신의 저주가 타인을 해칠까 봐 밀어내는 소년. 누군가 자신을 붙잡아주길 간절히 바라고 있습니다.",
+        }
+      ],
+      "3학년": [
+        { 
+          name: "백운 연", 
+          role: "🐉 연 왕국 태자", 
+          age: "23", 
+          emoji: "🌙", 
+          className: "연금술", 
+          looks: "긴 흑발/흑안", 
+          code: "관조자/예의바른 소외", 
+          keywords: ["향수", "정중", "신비"], 
+          detail: "멀리 동방에서 온 귀객. 완벽한 예의로 선을 긋지만 고향에 대한 그리움을 품고 있습니다.",
+        },
+        { 
+          name: "아르카 벨세리아", 
+          role: "🏛️ 학생회장/백작령", 
+          age: "24", 
+          emoji: "👑", 
+          className: "마법이론", 
+          looks: "보라 머리/적안", 
+          code: "완벽주의/질서중심", 
+          keywords: ["책임감", "통제", "드릴머리"], 
+          detail: "아카데미의 질서를 상징하는 인물. 규칙 아래 자신의 진심을 억누르며 살아갑니다.",
+        },
+        { 
+          name: "루시안 아스트람", 
+          role: "🪄 차기 마탑주", 
+          age: "24", 
+          emoji: "🔮", 
+          className: "마법학부", 
+          looks: "백발/자안", 
+          code: "나르시시스트/효율우선", 
+          keywords: ["천재", "공감결여", "집착"], 
+          detail: "모든 것을 효율로 계산하는 천재 마법사. 당신이라는 '변수'를 만난 후 계산이 꼬이기 시작합니다.",
+        },
+        { 
+          name: "이안 크로스펠", 
+          role: "🏛️ 몰락 공작가", 
+          age: "24", 
+          emoji: "⚙️", 
+          className: "검술학부", 
+          looks: "애쉬베이지/회안", 
+          code: "실용주의/생존제일", 
+          keywords: ["상실감", "리더", "현실적"], 
+          detail: "가문의 몰락 후 오직 생존만을 위해 달려온 기사. 감정 표현이 서툴지만 동료를 지키는 마음은 진심입니다.",
+        }
+      ],
+      "4학년": [
+        { 
+          name: "미카엘 발레리온", 
+          role: "✝️ 성기사단장 후보", 
+          age: "25", 
+          emoji: "⚔️", 
+          className: "신성검술", 
+          looks: "은발/금안", 
+          code: "수도자/금욕적", 
+          keywords: ["도덕", "억눌린 본능", "갭모에"], 
+          detail: "신전의 기대를 한 몸에 받는 성기사. 완벽한 도덕성 뒤에 뜨거운 본능을 억누르고 있습니다.",
+        },
+        { 
+          name: "테오도르 벨로아", 
+          role: "🏛️ 소공작", 
+          age: "26", 
+          emoji: "📚", 
+          className: "인문학부", 
+          looks: "브라운/녹안", 
+          code: "안정형/헌신적", 
+          keywords: ["다정남", "열등감", "중재자"], 
+          detail: "모두에게 다정한 아카데미의 선배. 하지만 형에게 밀려 차남으로 살아온 열등감이 뿌리 깊게 박혀 있습니다.",
+        }
+      ],
+      // =============================
+      // ✨ 교수진 추가!
+      // =============================
+      "교수진": [
+        {
+          name: "레오날드 아르케인",
+          role: "🏛️🪄 아카데미 학장 / 대마도사",
+          age: "48",
+          emoji: "👁️",
+          className: "학장",
+          looks: "백금발/청안",
+          code: "관조자/질서유지/통제불안",
+          keywords: ["권위", "통찰", "고독"],
+          detail: "아르카디아의 최고 권위자. 차원 붕괴 연구의 최전선에 선 대마도사이자, 무너지지 않는 질서를 상징하는 인물입니다. 완벽한 통제력 뒤에 깊은 불안을 감추고 있으며, 학생들을 말없이 지켜보는 차가운 눈빛 속에 누구도 이해하지 못할 책임감을 짊어지고 있습니다.",
+          // imageUrl: "https://i.imgur.com/your-image.jpg"
+        },
+        {
+          name: "세라피나 노크티아",
+          role: "🪄 마탑 출신 교수",
+          age: "39",
+          emoji: "🧪",
+          className: "이론·연구 담당",
+          looks: "흑발/자안",
+          code: "엘리트/효율우선/공감결여",
+          keywords: ["냉철", "완벽주의", "거리두기"],
+          detail: "마탑에서 영입된 천재 이론가. 마법 이론과 연구에서는 타의 추종을 불허하지만, 학생들의 감정은 '비효율적 변수'로 치부합니다. 차갑고 무표정한 강의 뒤에는 스스로를 기계처럼 다루는 자기학대가 숨어 있습니다.",
+          // imageUrl: "https://i.imgur.com/your-image.jpg"
+        },
+        {
+          name: "엘리시아 그레이브하트",
+          role: "🐉 전선 귀환 영웅",
+          age: "41",
+          emoji: "🛡️",
+          className: "실습·현장 담당",
+          looks: "은발/녹안",
+          code: "보호자/책임중시/상실트라우마",
+          keywords: ["희생", "죄책감", "강인함"],
+          detail: "차원 전쟁에서 돌아온 전설적 기사. 학생들을 실전에 대비시키는 엄격한 교관이지만, 눈빛 속에는 전장에서 잃은 동료들에 대한 깊은 슬픔이 서려 있습니다. 누구도 다시는 잃고 싶지 않다는 집착에 가까운 책임감을 품고 있습니다.",
+          // imageUrl: "https://i.imgur.com/your-image.jpg"
+        },
+        {
+          name: "마리엔느 루미에르",
+          role: "✝️ 신전 연계 추기경",
+          age: "37",
+          emoji: "⚖️",
+          className: "윤리·보조학문 담당",
+          looks: "금발/회안",
+          code: "중재자/균형감각/결단회피",
+          keywords: ["온화", "우유부단", "평화주의"],
+          detail: "신전에서 파견된 성직자 교수. 윤리와 신학을 가르치며 학생들 사이의 갈등을 중재하는 역할을 맡고 있습니다. 모두를 품으려는 따뜻한 마음이 오히려 결정적 순간에 선택하지 못하는 약점이 되곤 합니다.",
+          // imageUrl: "https://i.imgur.com/your-image.jpg"
+        },
+        {
+          name: "카르도스 브란헤임",
+          role: "🏛️멸국 아레노스의 전직 황실 기사단장",
+          age: "45",
+          emoji: "💥",
+          className: "전투·실전 담당",
+          looks: "적갈발/흑안",
+          code: "압박자/성과중심/연약함혐오",
+          keywords: ["가혹", "결과주의", "트라우마"],
+          detail: "황실 기사단을 이끌었던 전설적 검사. 극한의 훈련과 냉혹한 평가로 악명 높지만, 그의 가혹함은 '약한 자는 살아남지 못한다'는 전장의 진리에서 비롯됩니다. 과거 자신의 관대함이 부하들을 죽음으로 내몰았던 기억이 그를 괴물로 만들었습니다.",
+          // imageUrl: "https://i.imgur.com/your-image.jpg"
+        },
+        {
+          name: "카르시온 에니그마",
+          role: "🏛️ 황실 궁정 마도사",
+          age: "불명 (추정 60+)",
+          emoji: "🃏",
+          className: "특별강의·비공식과목",
+          looks: "은회색/청안",
+          code: "관찰자/중립유지/정체불명",
+          keywords: ["수수께끼", "초연", "통찰"],
+          detail: "누구도 그의 정체를 명확히 알지 못합니다. 때때로 나타나 비공식 특강을 진행하며, 학생들에게 의미심장한 조언을 남기고 사라집니다. 모든 것을 꿰뚫어보는 듯한 눈빛과 중립적인 태도 뒤에 어떤 의도가 숨어 있는지는 아무도 모릅니다.",
+          // imageUrl: "https://i.imgur.com/your-image.jpg"
+        }
+      ]
+    };
+
+    // =============================
+    // Logic
+    // =============================
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
+
+    let currentPage = 0;
+    let activeGrade = "1학년";
+    let bgmOn = false;
+
+    // BGM
+    const bgm = $("#main-bgm");
+    $("#btnBgm").onclick = () => {
+      bgmOn = !bgmOn;
+      $("#btnBgm").textContent = `🎵 BGM: ${bgmOn ? "ON" : "OFF"}`;
+      
+      if(bgmOn) {
+        bgm.volume = 0.5;
+        bgm.play().catch(e => {
+          console.log("브라우저 자동재생 정책으로 인해 BGM 재생 실패:", e);
+          bgmOn = false;
+          $("#btnBgm").textContent = "🎵 BGM: OFF";
+        });
+      } else {
+        bgm.pause();
+      }
+    };
+
+    // =============================
+    // 🎚️ 볼륨 슬라이더 제어
+    // =============================
+    const volumeSlider = $("#volumeSlider");
+    const volumeValue = $("#volumeValue");
+    
+    volumeSlider.oninput = () => {
+      const volume = volumeSlider.value / 100;
+      bgm.volume = volume;
+      volumeValue.textContent = volumeSlider.value;
+      
+      // 슬라이더 배경 그라데이션 업데이트
+      const percentage = volumeSlider.value;
+      volumeSlider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${percentage}%, rgba(255,255,255,.1) ${percentage}%, rgba(255,255,255,.1) 100%)`;
+    };
+
+    // =============================
+    // 🖼️ 이미지 팝업 (클릭 시 확대)
+    // =============================
+    const imagePopup = $("#imagePopup");
+    const popupImage = $("#popupImage");
+    
+    function openImagePopup(imageSrc) {
+      popupImage.src = imageSrc;
+      imagePopup.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    
+    function closeImagePopup() {
+      imagePopup.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+    
+    // 팝업 클릭 시 닫기
+    imagePopup.onclick = closeImagePopup;
+    
+    // ESC 키로 닫기
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && imagePopup.classList.contains("open")) {
+        closeImagePopup();
+      }
+    });
+
+
+    // Navigation
+    function updatePage() {
+      $$(".page").forEach((p, i) => p.classList.toggle("active", i === currentPage));
+      $("#prevBtn").setAttribute("aria-disabled", currentPage === 0);
+      $("#nextBtn").setAttribute("aria-disabled", currentPage === 2);
+    }
+
+    $("#nextBtn").onclick = () => { 
+      if(currentPage < 2) { 
+        currentPage++; 
+        updatePage(); 
+      } 
+    };
+    
+    $("#prevBtn").onclick = () => { 
+      if(currentPage > 0) { 
+        currentPage--; 
+        updatePage(); 
+      } 
+    };
+    
+    $("#enterBtn").onclick = () => { 
+      currentPage = 1; 
+      updatePage();
+      if(!bgmOn) $("#btnBgm").click();
+    };
+
+    // Characters
+    function renderTabs() {
+      const container = $("#gradeTabs");
+      container.innerHTML = "";
+      
+      // 학년 탭 + 교수진 탭
+      const tabs = ["1학년", "2학년", "3학년", "4학년", "교수진"];
+      
+      tabs.forEach(g => {
+        const btn = document.createElement("button");
+        const isFaculty = g === "교수진";
+        btn.className = `tab ${isFaculty ? "faculty " : ""}${activeGrade === g ? "active" : ""}`;
+        btn.textContent = g;
+        btn.onclick = () => { 
+          activeGrade = g; 
+          renderTabs(); 
+          renderCards(); 
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderCards() {
+      const container = $("#cardGrid");
+      container.innerHTML = "";
+      const isFaculty = activeGrade === "교수진";
+      
+      (CHARACTERS[activeGrade] || []).forEach(c => {
+        const card = document.createElement("div");
+        card.className = `card ${isFaculty ? "faculty" : ""}`;
+        
+        const portraitImg = c.imageUrl 
+          ? `<img src="${c.imageUrl}" alt="${c.name}">` 
+          : '';
+        
+        card.innerHTML = `
+          <div class="portrait">${portraitImg}</div>
+          <div style="flex:1">
+            <p class="name">${c.emoji} ${c.name}</p>
+            <p class="meta">${c.role} · ${c.age}세</p>
+            <div class="tags">${c.keywords.map(k => `<span class="tag">#${k}</span>`).join("")}</div>
+          </div>
+        `;
+        card.onclick = () => openModal(c);
+        container.appendChild(card);
+      });
+      
+      // 카드 이미지에 클릭 이벤트 추가 (이미지 확대)
+      container.querySelectorAll(".portrait img").forEach(img => {
+        img.onclick = (e) => {
+          e.stopPropagation();
+          openImagePopup(img.src);
+        };
+      });
+
+    }
+
+    function openModal(c) {
+      $("#charTitle").textContent = `${c.emoji} ${c.name} (${c.className})`;
+      
+      const charImage = c.imageUrl 
+        ? `<img src="${c.imageUrl}" alt="${c.name}">` 
+        : '';
+      
+      $("#charBody").innerHTML = `
+        <div class="modalCharInfo">
+          <div class="modalCharImage">${charImage}</div>
+          <div>
+            <div class="box" style="margin-bottom: 16px;">
+              <b style="color:var(--accent); font-size: 16px;">[캐릭터 소갯말]</b><br><br>
+              ${c.detail}
+            </div>
+            <div class="box">
+              <b style="color:var(--accent); font-size: 16px;">[상세 정보]</b><br><br>
+              • <strong>외양:</strong> ${c.looks}<br>
+              • <strong>성격:</strong> ${c.code}<br>
+              • <strong>키워드:</strong> ${c.keywords.join(", ")}
+            </div>
+          </div>
+        </div>
+      `;
+      $("#charModal").classList.add("open");
+      
+      // 모달 내 이미지에 클릭 이벤트 추가 (이미지 확대)
+      const modalImage = document.querySelector(".modalCharImage img");
+      if(modalImage) {
+        modalImage.onclick = () => openImagePopup(modalImage.src);
+      }
+
+    }
+
+    $("#closeChar").onclick = () => $("#charModal").classList.remove("open");
+    
+    $("#charModal").onclick = (e) => {
+      if(e.target === $("#charModal")) {
+        $("#charModal").classList.remove("open");
+      }
+    };
+    
+
+    // =============================
+    // 🌍 국가 정보 모달
+    // =============================
+    const nationModal = $("#nationModal");
+    
+    function openNationModal(nation) {
+      $("#nationTitle").textContent = `${nation.emoji} ${nation.fullName}`;
+      $("#nationSubtitle").textContent = nation.subtitle;
+      
+      // 🖼️ 배경 이미지 설정 (50% 투명도)
+      const modalBody = document.querySelector("#nationBody");
+      const bgImage = nation.backgroundImage || "";
+      if(bgImage) {
+        modalBody.style.backgroundImage = `url(${bgImage})`;
+      } else {
+        modalBody.style.backgroundImage = "none";
+      }
+      
+      $("#nationBody").innerHTML = `
+        <div class="nation-info-grid">
+          <div class="nation-info-item">
+            <div class="nation-info-label">국가 상징</div>
+            <div class="nation-info-value">${nation.symbol}</div>
+          </div>
+          <div class="nation-info-item">
+            <div class="nation-info-label">지도자</div>
+            <div class="nation-info-value">${nation.leader}</div>
+          </div>
+          <div class="nation-info-item">
+            <div class="nation-info-label">국교</div>
+            <div class="nation-info-value">${nation.religion}</div>
+          </div>
+          <div class="nation-info-item">
+            <div class="nation-info-label">국가 형태</div>
+            <div class="nation-info-value">${nation.fullName}</div>
+          </div>
+        </div>
+        
+        <div class="nation-section">
+          <div class="nation-section-title">🏛️ 국가 특징</div>
+          <div class="nation-section-content">${nation.core}</div>
+        </div>
+        
+        <div class="nation-section">
+          <div class="nation-section-title">🎓 '아르카디아' 아카데미와의 관계</div>
+          <div class="nation-section-content">${nation.academy}</div>
+        </div>
+        
+        <div class="nation-section">
+          <div class="nation-section-title">⚔️ 정치적 입장</div>
+          <div class="nation-section-content">${nation.politics}</div>
+        </div>
+        
+        <div class="nation-section">
+          <div class="nation-section-title">👑 지도자 상세</div>
+          <div class="nation-section-content">${nation.detail}</div>
+        </div>
+        
+        <button class="nation-close-btn" onclick="closeNationModal()">✕ 닫기</button>
+      `;
+      
+      nationModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    
+    function closeNationModal() {
+      nationModal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+    
+    // 모달 외부 클릭 시 닫기
+    nationModal.onclick = (e) => {
+      if(e.target === nationModal) closeNationModal();
+    };
+    
+    // ESC 키로 닫기
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && nationModal.classList.contains("open")) {
+        closeNationModal();
+      }
+    });
+
+    // Init
+const pillBox = $("#nationPills");
+NATIONS.forEach(n => {
+  const p = document.createElement("div");
+  p.className = "pill";
+  p.textContent = n.key;
+  p.style.cursor = "pointer";
+  p.onclick = () => {
+    // 🎵 BGM 자동 재생 (꺼져있을 때만)
+    if(!bgmOn) {
+      bgmOn = true;
+      $("#btnBgm").textContent = `🎵 BGM: ON`;
+      bgm.volume = volumeSlider.value / 100;
+      bgm.play().catch(e => {
+        console.log("브라우저 자동재생 정책으로 인해 BGM 재생 실패:", e);
+        bgmOn = false;
+        $("#btnBgm").textContent = "🎵 BGM: OFF";
+      });
+    }
+    // 국가 모달 열기
+    openNationModal(n);
+  };
+  pillBox.appendChild(p);
+});
+
+    renderTabs();
+    renderCards();
+  </script>
+</body>
+</html>
