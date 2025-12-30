@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Arcadia Academy Times - New Student Special Edition</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a15;
+      --panel:#0d0d1ecc;
+      --panel2:#0e0f1fee;
+      --text:#eff0ff;
+      --muted:#b4b5d2;
+      --line:#2d2e4f;
+      --accent:#7b9aff;
+      --accent2:#b68fff;
+      --gold:#f4d58d;
+      --shadow: 0 25px 60px rgba(0,0,0,.65), 0 8px 20px rgba(0,0,0,.4);
+      --radius: 20px;
+    }
+    
+    *{box-sizing:border-box; margin:0; padding:0;}
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    
+    body{
+      min-height:100vh;
+      color:var(--text);
+      font-family: 'Noto Serif KR', 'Cormorant Garamond', serif;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(123,154,255,.15), transparent 50%),
+        radial-gradient(circle at 85% 20%, rgba(182,143,255,.12), transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(244,213,141,.08), transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(123,154,255,.10), transparent 45%),
+        linear-gradient(180deg, #05050a, #0a0a15 40%, #05050a);
+      background-attachment: fixed;
+      animation: subtleGlow 20s ease-in-out infinite;
+    }
+    
+    @keyframes subtleGlow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.05); }
+    }
+    
+    a{color:inherit; text-decoration:none;}
+    
+    .wrap{
+      max-width: 1150px; 
+      margin: 0 auto; 
+      padding: 32px 20px 80px;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 신문 헤더 스타일 */
+    .newspaper-header {
+      text-align: center;
+      border-bottom: 3px double var(--gold);
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .newspaper-header::after {
+      content: "✦";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg);
+      padding: 0 15px;
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .newspaper-title {
+      font-size: min(48px, 8vw); 
+      max-width: 100%;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+      background: linear-gradient(135deg, var(--gold), var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 12px 0;
+      text-shadow: 0 0 30px rgba(244,213,141,.3);
+    }
+    .newspaper-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .newspaper-date {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* 상단바 */
+    .topbar{
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      gap:16px; 
+      margin-bottom:24px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+    .brand{
+      display:flex; 
+      align-items:center; 
+      gap:12px; 
+      font-weight:700; 
+      letter-spacing:.5px;
+    }
+    .brandLogo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.15);
+      background: linear-gradient(135deg, rgba(123,154,255,.2), rgba(182,143,255,.15));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 4px 12px rgba(123,154,255,.2);
+    }
+    .badge{
+      font-size:11px;
+      color:var(--muted);
+      padding:7px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      font-weight: 500;
+    }
+    .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:11px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      transition: all .2s ease;
+      user-select:none;
+      font-weight: 500;
+    }
+    .btn:hover{ 
+      transform: translateY(-2px); 
+      border-color: var(--accent); 
+      box-shadow: 0 6px 20px rgba(123,154,255,.3);
+    }
+    .btn.primary{
+      border-color: rgba(123,154,255,.7);
+      background: linear-gradient(135deg, rgba(123,154,255,.25), rgba(182,143,255,.18));
+      box-shadow: 0 4px 15px rgba(123,154,255,.2);
+    }
+    .btn.tiny{ 
+      padding:9px 12px; 
+      font-size:13px; 
+      border-radius:12px;
+    }
+
+    /* 메인 스테이지 */
+    .stage{
+      position:relative;
+      background: var(--panel);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+      min-height: 70vh;
+    }
+    .stageInner{
+      position:relative; 
+      padding: 28px 90px 60px; 
+      min-height: 70vh;
+    }
+    
+    /* 네비게이션 - 화살표 stageInner 내부 양옆 배치 */
+    .nav{
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      right: 15px;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .page{ display:none; }
+    .page.active{ 
+      display:block; 
+      animation: pageSlide 0.4s ease-out;
+    }
+    @keyframes pageSlide {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .headline{
+      font-size: 36px;
+      margin: 8px 0 16px;
+      letter-spacing:1px; 
+      font-weight: 700;
+      text-align: center;
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+      background: linear-gradient(to right, var(--gold), var(--accent)); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 14px;
+    }
+    .sub{
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height:1.7;
+      text-align: center;
+      font-style: italic;
+      font-size: 15px;
+    }
+
+    /* 신문 기사 스타일 */
+    .article-container {
+      background: var(--panel2);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 28px;
+      line-height: 1.9;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .article-headline {
+      font-size: 26px;
+      font-weight: 700;
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+      color: var(--gold);
+      margin: 0 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: .5px;
+    }
+    .article-subhead {
+      font-size: 17px;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 24px 0 12px 0;
+      font-family: 'Noto Serif KR', serif;
+    }
+    .article-text {
+      color: var(--text);
+      margin: 0 0 16px 0;
+      font-size: 15px;
+      line-height: 2;
+    }
+    .article-highlight {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+    .article-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .article-box {
+      background: rgba(0,0,0,.3);
+      border-left: 4px solid var(--accent);
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+    .article-box-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 14px 0;
+    }
+    .article-box-item {
+      margin: 10px 0;
+      padding-left: 14px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+      position: relative;
+    }
+    .article-box-item::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* 카드 그리드 */
+    .cardGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap:24px;
+      margin:32px 0;
+    }
+    .card{
+      background: var(--panel2);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding:24px;
+      transition: all .3s ease;
+      cursor:pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(123,154,255,.1), transparent 70%);
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card:hover{
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px rgba(123,154,255,.4);
+    }
+    .cardTitle{
+      font-size:20px;
+      font-weight:700;
+      margin-bottom:12px;
+      color:var(--accent);
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+    }
+    .cardTags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    .cardTag{
+      font-size:11px;
+      padding:5px 10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .cardDesc{
+      font-size:14px;
+      line-height:1.7;
+      color:var(--muted);
+    }
+
+    /* 모달 */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      animation: modalFadeIn .3s ease-out;
+      cursor: pointer; /* 전체 터치 가능 표시 */
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal.active{display:flex;}
+    .modalOverlay{
+      position:absolute;
+      inset:0;
+      background: rgba(5,5,10,.85);
+      backdrop-filter: blur(10px);
+    }
+    .modalContent{
+      position:relative;
+      margin:auto;
+      max-width:900px;
+      width:90%;
+      max-height:90vh;
+      overflow-y:auto;
+      background: var(--panel);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      animation: modalSlideUp .3s ease-out;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) rgba(255,255,255,.05);
+    }
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modalContent::-webkit-scrollbar {
+      width: 8px;
+    }
+    .modalContent::-webkit-scrollbar-track {
+      background: rgba(255,255,255,.05);
+      border-radius: 10px;
+    }
+    .modalContent::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 10px;
+    }
+    .modalContent::-webkit-scrollbar-thumb:hover {
+      background: var(--accent2);
+    }
+    .modalInner{
+      padding:32px;
+      /* 내부 텍스트 선택 등은 가능하게 하려면 여기서 cursor auto로 바꿀 수도 있음. */
+    }
+
+    /* 캐릭터 모달 */
+    .modalHeader{
+      display:flex;
+      gap:28px;
+      margin-bottom:28px;
+      padding-bottom:20px;
+      border-bottom:2px solid var(--line);
+    }
+    .modalCharImage{
+      width:240px;
+      height:320px;
+      border-radius: 16px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.2);
+      flex-shrink:0;
+      position: relative;
+      background: linear-gradient(135deg, rgba(123,154,255,.15), rgba(182,143,255,.1));
+      box-shadow: 0 8px 25px rgba(0,0,0,.4);
+    }
+    .modalCharImage::before {
+      content: "📷";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      opacity: .3;
+      z-index: 0;
+    }
+    .modalCharImage img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position: relative;
+      z-index: 1;
+    }
+    .modalCharInfo{
+      flex:1;
+    }
+    .modalCharName{
+      font-size:32px;
+      font-weight:700;
+      margin-bottom:10px;
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+      background: linear-gradient(to right, var(--gold), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .modalCharTitle{
+      font-size:16px;
+      color:var(--accent2);
+      margin-bottom:20px;
+      font-style: italic;
+    }
+    .modalStatGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+    .modalStat{
+      background: rgba(0,0,0,.3);
+      padding:12px;
+      border-radius: 10px;
+      border-left: 3px solid var(--accent);
+    }
+    .modalStatLabel{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .modalStatValue{
+      font-size:15px;
+      font-weight:600;
+      color:var(--text);
+    }
+    .modalBody{
+      line-height:1.9;
+      color:var(--text);
+    }
+    .modalSection{
+      margin-bottom:28px;
+    }
+    .modalSectionTitle{
+      font-size:20px;
+      font-weight:700;
+      margin-bottom:14px;
+      color:var(--gold);
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+    .modalSectionContent{
+      font-size:15px;
+      line-height:1.9;
+      color:var(--muted);
+    }
+
+    /* 국가 모달 */
+    .nationBanner{
+      height:220px;
+      background: linear-gradient(135deg, rgba(123,154,255,.3), rgba(182,143,255,.2));
+      border-radius: 16px;
+      margin:-32px -32px 28px;
+      padding:32px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+      box-shadow: inset 0 -2px 10px rgba(0,0,0,.3);
+      z-index: 1; /* 배너 z-index 설정 */
+    }
+    .nationBanner::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,.1), transparent 70%);
+      animation: bannerShine 8s linear infinite;
+    }
+    @keyframes bannerShine {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .nationIcon{
+      font-size:120px;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,.5));
+      position: relative;
+      z-index: 1;
+    }
+    .nationName{
+      font-size:40px;
+      font-weight:700;
+      text-align:center;
+      margin-bottom:8px;
+      font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+      background: linear-gradient(to right, var(--gold), var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(244,213,141,.3);
+    }
+    .nationSubtitle{
+      font-size:16px;
+      color:var(--accent);
+      text-align:center;
+      margin-bottom:28px;
+      font-style: italic;
+    }
+    .nationInfo{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap:18px;
+      margin-bottom:28px;
+    }
+    .nationInfoItem{
+      background: rgba(0,0,0,.3);
+      padding:16px;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+    .nationInfoLabel{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .nationInfoValue{
+      font-size:16px;
+      font-weight:600;
+      color:var(--text);
+    }
+    .nationDesc{
+      font-size:15px;
+      line-height:2;
+      color:var(--muted);
+      margin-bottom:28px;
+      padding: 20px;
+      background: rgba(0,0,0,.2);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* 이미지 확대 모달 */
+    .imageModalContent {
+      position: relative;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: modalSlideUp .3s ease-out;
+      cursor: pointer; /* 터치 가능 표시 */
+    }
+
+    .portrait img, .modalCharImage img {
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+    .portrait img:hover, .modalCharImage img:hover {
+      transform: scale(1.05);
+    }
+
+    .arrow{
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      background: linear-gradient(135deg, rgba(123,154,255,.4), rgba(182,143,255,.3));
+      backdrop-filter: blur(15px);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .3s ease;
+      font-size: 30px;
+      font-weight: bold;
+      user-select: none;
+      pointer-events: all;
+      box-shadow: 0 8px 30px rgba(123,154,255,.6), 0 0 60px rgba(123,154,255,.3);
+      position: relative;
+    }
+    .arrow::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity .3s ease;
+      z-index: -1;
+    }
+    .arrow:hover:not([aria-disabled="true"])::before {
+      opacity: 0.3;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .arrow:hover:not([aria-disabled="true"]){
+      transform: scale(1.2);
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(123,154,255,.6), rgba(182,143,255,.5));
+      box-shadow: 0 12px 40px rgba(123,154,255,.8), 0 0 80px rgba(123,154,255,.5);
+      color: var(--gold);
+    }
+    .arrow[aria-disabled="true"]{
+      opacity: .15;
+      cursor: not-allowed;
+      border-color: rgba(255,255,255,.1);
+      background: rgba(13,13,30,.5);
+      box-shadow: none;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+    }
+    .pageNum{
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 700;
+      background: linear-gradient(135deg, rgba(123,154,255,.25), rgba(182,143,255,.2));
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      border: 2px solid rgba(123,154,255,.4);
+      box-shadow: 0 4px 20px rgba(0,0,0,.4);
+    }
+
+    /* 국가 필터 Pills */
+    .nationPills{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+      justify-content:center;
+    }
+    .pill{
+      padding:10px 18px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      transition: all .2s ease;
+      user-select:none;
+    }
+    .pill:hover{
+      border-color: var(--accent);
+      background: rgba(123,154,255,.15);
+      color:var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(123,154,255,.3);
+    }
+    .pill.active{
+      border-color: var(--accent);
+      background: rgba(123,154,255,.25);
+      color:var(--text);
+      box-shadow: 0 4px 15px rgba(123,154,255,.3);
+    }
+
+    /* 첫 페이지 국가 선택 pill 추가 스타일 */
+    .page .pill[data-nation] {
+      font-size: 14px;
+      padding: 12px 20px;
+    }
+    .page .pill[data-nation]:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(123,154,255,.4);
+    }
+
+    /* 탭 메뉴 */
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:24px;
+      border-bottom:2px solid var(--line);
+      padding-bottom:0;
+      flex-wrap:wrap;
+    }
+    .tab{
+      padding:12px 20px;
+      background: transparent;
+      border:none;
+      color:var(--muted);
+      cursor:pointer;
+      transition: all .2s ease;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-size:15px;
+      font-weight: 600;
+    }
+    .tab:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px 12px 0 0;
+    }
+    .tab.active{
+      color:var(--accent);
+      border-bottom-color: var(--accent);
+      background: rgba(123,154,255,.1);
+      border-radius: 12px 12px 0 0;
+    }
+
+    /* 인물 소개 카드 (프로필 카드) */
+    .portrait{
+      width:180px;
+      height:240px;
+      border-radius: 14px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.2);
+      margin:0 auto 16px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(123,154,255,.15), rgba(182,143,255,.1));
+      box-shadow: 0 8px 25px rgba(0,0,0,.4);
+    }
+    .portrait::before {
+      content: "📷";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      opacity: .3;
+      z-index: 0;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 볼륨 컨트롤 */
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .volume-slider {
+      width: 100px;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255,255,255,.1);
+      border-radius: 10px;
+      outline: none;
+    }
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(123,154,255,.4);
+    }
+    .volume-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 8px rgba(123,154,255,.4);
+    }
+    .volume-label {
+      font-size: 12px;
+      color: var(--muted);
+      min-width: 45px;
+    }
+
+    /* ============================================
+       📱 모바일 반응형 - 1열 레이아웃
+       ============================================ */
+    @media screen and (max-width: 768px) {
+      /* 클래스 가이드와 장점 & 시스템 안내 섹션 1열로 변경 */
+      .article-columns {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* 인물 소개 카드 그리드 1열로 변경 */
+      .cardGrid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* 국가 정보 그리드 1열로 변경 */
+      .nationInfo {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* 모달 스탯 그리드 1열로 변경 */
+      .modalStatGrid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* 캐릭터 모달 헤더 세로 배치 */
+      .modalHeader {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modalCharImage {
+        width: 100%;
+        max-width: 280px;
+        height: 360px;
+      }
+
+      /* 헤더 텍스트 크기 조정 */
+      .headline {
+        font-size: clamp(20px, 6vw, 32px) !important;
+        line-height: 1.3 !important;
+        word-break: keep-all !important;
+      }
+
+      .newspaper-title {
+        font-size: clamp(28px, 7vw, 42px) !important;
+      }
+
+      /* 모달 패딩 조정 */
+      .modalInner {
+        padding: 24px 16px;
+      }
+
+      .nationBanner {
+        margin: -24px -16px 24px;
+        padding: 24px;
+        height: 180px;
+      }
+
+      .nationIcon {
+        font-size: 80px;
+      }
+
+      .nationName {
+        font-size: 28px;
+      }
+
+      /* 상단바 조정 */
+      .topbar {
+        padding: 16px 12px !important;
+        flex-wrap: wrap !important;
+      }
+
+      .brand {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+
+      .controls {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        margin-top: 8px !important;
+      }
+
+      /* 볼륨 슬라이더 모바일에서도 보이게 */
+      .volume-control {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+      }
+
+      .volume-slider {
+        width: 80px !important;
+        display: block !important;
+      }
+
+      .volume-label {
+        font-size: 11px !important;
+        display: inline-block !important;
+      }
+
+      /* 화살표 버튼 크기 조정 */
+      .arrow {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 26px !important;
+      }
+
+      .pageNum {
+        bottom: 15px;
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      .stageInner {
+        padding: 20px 70px 50px;
+      }
+
+      .nav {
+        left: 10px;
+        right: 10px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .wrap {
+        padding: 24px 16px 60px;
+      }
+
+      .stageInner {
+        padding: 20px 60px 50px;
+      }
+
+      .nav {
+        left: 8px;
+        right: 8px;
+      }
+
+      .headline {
+        font-size: clamp(18px, 5.5vw, 28px) !important;
+      }
+
+      .newspaper-title {
+        font-size: clamp(24px, 6vw, 36px) !important;
+      }
+
+      .article-container {
+        padding: 20px;
+      }
+
+      .article-headline {
+        font-size: 20px;
+      }
+
+      .modalCharName {
+        font-size: 24px;
+      }
+
+      .nationName {
+        font-size: 24px;
+      }
+
+      .volume-slider {
+        width: 60px !important;
+      }
+
+      .volume-label {
+        font-size: 10px !important;
+      }
+
+      /* 화살표 버튼 초소형 크기 */
+      .arrow {
+        width: 55px !important;
+        height: 55px !important;
+        font-size: 24px !important;
+        border-width: 2px !important;
+      }
+
+      .pageNum {
+        bottom: 10px;
+        font-size: 12px;
+        padding: 6px 14px;
+      }
+    }
+
+    /* 이미지 표시 문제 해결 */
+    .modalCharImage {
+      position: relative;
+    }
+
+    .modalCharImage::before {
+      z-index: 0;
+    }
+
+    .modalCharImage img {
+      position: relative;
+      z-index: 1;
+    }
+
+    .portrait {
+      position: relative;
+    }
+
+    .portrait::before {
+      z-index: 0;
+    }
+
+    .portrait img {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgm" loop>
+  <source src="https://21bab544.arcadia-6sb.pages.dev/아르카디아%20아카데미%20테마곡.mp3" type="audio/mpeg">
+</audio>
+
+  <div class="wrap">
+    <div class="newspaper-header">
+      <div class="newspaper-subtitle">특별판 Vol. 1</div>
+      <h1 class="newspaper-title">Arcadia Academy Times</h1>
+      <div class="newspaper-date">2025년 신입생 환영 특집호 | 마법의 새해를 여는 특별판</div>
+    </div>
+
+    <div class="topbar">
+      <div class="brand">
+        <div class="brandLogo">🏰</div>
+        <div>아르카디아 타임즈</div>
+        <span class="badge">신입생 특별호</span>
+      </div>
+      <div class="controls">
+        <button id="btnBgm" class="btn tiny">🎵 BGM: OFF</button>
+        <div class="volume-control">
+          <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="30">
+          <span class="volume-label" id="volumeLabel">30%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stageInner">
+        <div id="page1" class="page active">
+          <div class="newspaper-subtitle" style="text-align:center; margin-bottom:20px;">제1025호 · 신입생 특별호 · Arcadia Year 1025</div>
+          <h2 class="headline">✨ 신입생 환영 특집 ✨</h2>
+          <p class="sub">대륙 최고의 전력 양성소, 아르카디아 아카데미에 오신 것을 환영합니다</p>
+          
+          <div class="article-container" style="text-align:center; padding:60px 28px;">
+            <div style="font-size:18px; line-height:2; margin-bottom:40px; color:var(--text);">
+              루셀 대륙의 6대 국가에서 모든 재원들이 이곳에서 하나가 됩니다.<br>
+              당신은 어느 나라 출신이신가요?
+            </div>
+
+            <div class="nationPills" style="justify-content:center; margin-bottom:40px;">
+              <div class="pill" data-nation="🏛️ 로벨 제국">🏛️ 로벨 제국</div>
+              <div class="pill" data-nation="🐉 대 연제국">🐉 대 연제국</div>
+              <div class="pill" data-nation="✝️ 발테르 성국">✝️ 발테르 성국</div>
+              <div class="pill" data-nation="🪄 아스트람 마법연방">🪄 아스트람 마법연방</div>
+              <div class="pill" data-nation="🦴 페나르 수인연맹">🦴 페나르 수인연맹</div>
+              <div class="pill" data-nation="🌲 실바리엘 수림국">🌲 실바리엘 수림국</div>
+            </div>
+
+            <button id="btnEnter" class="btn primary" style="font-size:16px; padding:16px 40px; border-radius:16px;">
+              📖 교문에 들어서기
+            </button>
+          </div>
+        </div>
+
+        <div id="page2" class="page">
+          <div style="text-align:center; margin-bottom:20px; font-size:12px; color:var(--muted); letter-spacing:2px; text-transform:uppercase;">SPECIAL REPORT</div>
+          <h2 class="headline" style="font-size:32px;">세계관 특집 기사</h2>
+          <p class="sub">발톱 가지: 아카데미 정보국 발행</p>
+          
+          <div class="article-container">
+            <h3 class="article-headline">🏰 루셀 대륙 긴급 보고서</h3>
+            
+            <p class="article-text">
+              루셀은 전란한 마력 문명과 엄격한 귀족제가 공존하는 땅입니다. 격화된 투도회와 우아한 사교회 뒤에는 차원의 벽 붕괴라는 거대한 재난이 도사리고 있습니다.
+            </p>
+
+            <div class="article-subhead">🦋 현타의 속명: 차원 붕괴의 그림자</div>
+            <p class="article-text">
+              불과 전년 전, 차원의 벽이 무너지며 아카데미 학생들은 '위타'가 되어 전선에 섰습니다. 마불은 도방하고 '미싱'은 만스한 정보들로 아닙니다. 그것은 부각 명에의 성저이며, 차신의 가치를 증명하는 사쿠르지도 읍니다.
+            </p>
+
+            <div class="article-subhead">⚠️ 기자 주: 토탈 입무는 세옹 훈련이자 계급 투챙의 연습선입니다. 전장에서 맺은 인연은 귀생을 좌우합니다.</div>
+
+            <div class="article-columns">
+              <div class="article-box">
+                <div class="article-box-title">✕ 클래스 가이드</div>
+                <div class="article-box-item">▸ 마법사: 마탄 중심, 차원 분석 및 정상을 담당</div>
+                <div class="article-box-item">▸ 기사: 귀족의 방패, 최전선 핵심 전력</div>
+                <div class="article-box-item">▸ 성직자: 신전 소속, 요엘 정화 및 민심 통제</div>
+                <div class="article-box-item">▸ 정탐자: 차연 공명자, 개인 역량 차이 극심</div>
+              </div>
+
+              <div class="article-box">
+                <div class="article-box-title">✦ 장점 & 시스템 안내</div>
+                <div class="article-box-item">▸ 로그 아카데미 & 서바이벌 헌팅존</div>
+                <div class="article-box-item">▸ 긴장감 넘치는 역학형 군상극</div>
+                <div class="article-box-item">▸ 일상의 설렘과 전장의 치열함 공존</div>
+                <div class="article-box-item">▸ "차별 없급" 그러나 보이지 않는 계급</div>
+              </div>
+            </div>
+
+            <div class="article-subhead">🌸 아르카디아의 일상과 전장</div>
+            <p class="article-text">
+              강의실에서 터득한 터퓨력적 시법과 도서관에서의 신력 대화는 누구도 생각의 길검에서 손 장치 만듭니다.
+            </p>
+
+            <div style="text-align:center; margin-top:40px; padding:30px; background:rgba(123,154,255,.1); border-radius:12px; border:1px solid var(--accent);">
+              <div style="font-size:18px; color:var(--accent); font-weight:700; margin-bottom:10px;">
+                당신은 이 치열한 아카데미에서 누구의 손을 잡겠습니까?
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="page3" class="page">
+          <h2 class="headline">🎭 주요 인물 소개</h2>
+          <p class="sub">"아카데미를 빛내는 특별한 인물들을 만나보세요"</p>
+
+          <div id="nationPillsChar" class="nationPills"></div>
+
+          <div id="tabs" class="tabs"></div>
+
+          <div id="cardGrid" class="cardGrid"></div>
+        </div>
+
+        <div class="nav">
+          <button id="btnPrev" class="arrow" aria-label="이전">◄</button>
+          <button id="btnNext" class="arrow" aria-label="다음">►</button>
+        </div>
+      </div>
+
+      <div class="pageNum"><span id="currentPage">1</span> / <span id="totalPages">3</span></div>
+    </div>
+  </div>
+
+  <div id="charModal" class="modal">
+    <div class="modalOverlay"></div>
+    <div class="modalContent">
+      <div class="modalInner" id="charModalInner"></div>
+    </div>
+  </div>
+
+  <div id="nationModal" class="modal">
+    <div class="modalOverlay"></div>
+    <div class="modalContent">
+      <div class="modalInner" id="nationModalInner"></div>
+    </div>
+  </div>
+
+  <div id="imageModal" class="modal">
+    <div class="modalOverlay"></div>
+    <div class="imageModalContent">
+      <img id="imageModalImg" src="" alt="확대 이미지" style="max-width:90vw; max-height:90vh; object-fit:contain; border-radius:12px;">
+    </div>
+  </div>
+
+
+  <script>
+window.addEventListener('load', function() {
+  console.log('페이지 로드');
+  
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => document.querySelectorAll(sel);
+  
+  let currentPage = 1;
+  const totalPages = 3;
+
+  // *** 상태 변수 추가 ***
+  let currentGrade = "1학년";
+  let currentNation = "ALL";
+  
+  // *** 데이터 정의 (함수 실행 전 위치) ***
+  const NATIONS = [
+      { 
+        key: "🏛️ 로벨 제국",
+        fullName: "로벨 제국",
+        emoji: "🏛️",
+        subtitle: "귀족과 마법사가 서로를 견제하며 균형을 유지하는 중앙제국",
+        symbol: "왕관 & 월계수",
+        leader: "황제 레오폴트 4세",
+        religion: "명목상 발테르 신앙, 실질적으로는 비종교적",
+        feature: "귀족-마법사 권력균형",
+        academy: "제국 직할 보호령으로서 치안과 보급을 관할합니다. 표면적으로는 독립성과 중립을 존중하지만, 인허가와 물자 흐름을 통해 간접적으로 영향력을 행사합니다.",
+        politics: "타국 견제용 엘리트 배출. 아카데미에서 육성한 인재를 외교, 정보, 전선 지휘, 마도공학 핵심 분야에 배치하여 다른 국가와의 경쟁에서 우위를 점합니다.",
+        detail: "귀족의 정치·군권과 마법사의 지식·기술권이 정면충돌하지 않도록 제도로 균형을 맞춘 국가입니다. 균형형 통치자로 평가받으며, 귀족과 마탑이 선을 넘지 않도록 조율하는 능력이 뛰어납니다."
+      },
+      { 
+        key: "🐉 대 연제국",
+        fullName: "대 연제국",
+        emoji: "🐉",
+        subtitle: "혈통이 곧 권력이며, 황실의 의지가 곧 국가의 방향인 동방 황조",
+        symbol: "오룡 문장",
+        leader: "연 태천제",
+        religion: "용신 숭배",
+        feature: "혈통 중심 절대군주제",
+        academy: "외교 특구로 인정하되, 완전히 신뢰하지는 않습니다. 국제 정세상 무시할 수 없는 '필수 외교 창구'로 보며, 대연 출신 학생 및 교관에게는 관찰자, 사절, 정보 수집의 역할이 부여됩니다.",
+        politics: "아카데미 견제와 활용 병행. 차원 기술과 마도공학이 유출되는 것을 경계하면서도, 전선 경험과 연구 성과를 흡수하려 합니다. 항상 '통제된 교류'만을 허용합니다.",
+        detail: "황실 혈통이 '정통성' 그 자체이며, 관료·귀족·군대 모두가 황제의 권위 아래 엄격한 계층 구조를 이룹니다. 대외적으로는 강력한 통치자로, 내부적으로는 황자들을 견제하고 균형을 유지하는 냉철한 권력자입니다."
+      },
+      { 
+        key: "✝️ 발테르 성국",
+        fullName: "발테르 성국",
+        emoji: "✝️",
+        subtitle: "신앙이 곧 법이며, 정화가 곧 국가의 존재 이유인 신정 국가",
+        symbol: "빛의 십자",
+        leader: "교황 세라핀 7세",
+        religion: "발테르 유일신",
+        feature: "신앙 = 법률",
+        academy: "신성 감찰 대상. 아카데미의 연구, 실습, 전투가 윤리적 선을 넘지 않는지 교단이 감찰합니다. 특히 마법, 마도공학, 이계 연구는 '위험한 지식'으로 분류되어 충돌이 잦습니다.",
+        politics: "차원 오염 정화 우선. 국가의 최우선 목표는 전쟁 승리나 영토 확장이 아닌 '오염을 정화하고 봉인하는 것'입니다. 타국과 이해관계가 충돌하더라도 '정화가 우선'이라는 논리를 관철시킵니다.",
+        detail: "'옳고 그름'의 기준이 종교 교리와 직결되어 있으며, 정치·재판·사회 규범이 교단의 권위 아래에서 작동합니다. 대외적으로는 '정화의 권위'를, 대내적으로는 분파 통합의 정치적 중심을 담당합니다."
+      },
+      { 
+        key: "🪄 아스트람 마법연방",
+        fullName: "아스트람 마법연방",
+        emoji: "🪄",
+        subtitle: "마탑들의 연합 국가, 귀족보다 연구와 성과를 우선하는 마법사 중심 사회",
+        symbol: "별과 마도진",
+        leader: "대마도사 오르펜",
+        religion: "無 (개인의 선택)",
+        feature: "마탑 연합체",
+        academy: "학문적 동맹 관계. 아카데미를 전선 인재 양성소이자 연구 협력 대상으로 봅니다. 공동 연구 및 학술 교류가 활발하지만, 핵심 기술 특히 차원벽 관련은 공유를 꺼립니다.",
+        politics: "반귀족 성향. 귀족 권력을 낡은 체제로 간주하며, '실력과 성과 기반 사회'를 이상으로 삼습니다. 따라서 귀족 중심 국가와 협력할 때도 신경전이 발생하기 쉽습니다.",
+        detail: "단일 왕조가 아닌 여러 마탑의 연구 조직이 결합하여 이룬 국가로, '합의와 경쟁'이 공존합니다. '연방의 대표'에 가까운 지도자로, 독재자가 아닌 마탑들의 합의로 권한을 행사합니다."
+      },
+      { 
+        key: "🦴 페나르 수인연맹",
+        fullName: "페나르 수인연맹",
+        emoji: "🦴",
+        subtitle: "부족이 모여 만든 자치 연맹, 차별과 편견 속에서 생존과 권리를 요구하는 국가",
+        symbol: "뼈 토템",
+        leader: "대족장 가르룬",
+        religion: "토템 신앙",
+        feature: "부족 연합 자치국",
+        academy: "중립 신뢰 대상. 아카데미를 '차별이 공식적으로 금지된 공간'으로 높이 평가합니다. 실력으로 인정받아 편견을 깨고자 하는 학생들이 많이 지원합니다.",
+        politics: "차별 철폐 요구. 국제사회에서 수인을 열등하게 보는 시선을 문제 삼으며, 제도적 평등을 강력히 주장합니다. 아카데미 내에서도 '은근한 차별'에 매우 민감하게 반응합니다.",
+        detail: "단일 민족이 아닌 여러 수인 종족 및 부족이 연맹을 구성하는 형태입니다. 중앙 정부의 권한은 상대적으로 약하며, 합의와 관습법의 비중이 큽니다. 여러 부족을 조율하는 중재자로서의 역할이 강합니다."
+      },
+      { 
+        key: "🌲 실바리엘 수림국",
+        fullName: "실바리엘 수림국",
+        emoji: "🌲",
+        subtitle: "자연 정령과 공존하는 숲의 왕국, 인간 사회를 근본적으로 불신하는 장수종 국가",
+        symbol: "세계수",
+        leader: "여왕 아일리엔",
+        religion: "자연 정령 신앙",
+        feature: "인간 사회 불신",
+        academy: "시험적 교류. 완전한 개방도, 완전한 단절도 아닌 '필요 최소한의 교류'만 허용합니다. 정령학 및 오염 정화 문제로 아카데미와 협력하지만, 인간의 욕망이 숲으로 침투하는 것을 경계합니다.",
+        politics: "거리 유지. 타국의 전쟁이나 외교전에 깊이 개입하지 않으려 합니다. 다만 차원 오염이 숲을 침식하는 순간에는 매우 강경하게 대응합니다.",
+        detail: "엘프 중심 사회로, 시간 감각과 가치관이 인간과 근본적으로 다릅니다. 인간의 '짧은 수명, 급격한 팽창, 끊임없는 권력 투쟁'을 숲을 위협하는 위험 요소로 봅니다. 외교적으로는 냉담하지만, 내부적으로는 숲을 지키기 위한 결단력이 강한 통치자입니다."
+      }
+    ];
+
+    const CHARACTERS = {
+      "1학년": [
+        { 
+          name: "클로에 리넨펠트", 
+          role: "🏛️ 약초학부 신입생", 
+          age: "20", 
+          backgroundImage: "",
+          emoji: "🌱", 
+          className: "약초학부", 
+          looks: "연갈색 머리/연녹안", 
+          code: "소심한 치유계/유리멘탈", 
+          keywords: ["성장", "치유", "로코"], 
+          detail: "재능은 뛰어나지만 자신감이 부족한 치유사. 당황하면 엉뚱한 약초를 내밀어 소동을 일으키곤 합니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/13.png"
+        },
+        { 
+          name: "네아 펠리온", 
+          role: "🦴 수인 고양이족", 
+          age: "21", 
+          emoji: "🐱", 
+          className: "전투학부", 
+          looks: "주황 머리/남색 눈", 
+          code: "호기심형/본능중심", 
+          keywords: ["애정결핍", "직감", "장난"], 
+          detail: "본능에 충실한 트러블 메이커. 금지된 구역일수록 더 깊숙이 파고드는 호기심 대장입니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/1.png"
+        },
+        { 
+          name: "리안 펜릴", 
+          role: "🦴 수인족 후계", 
+          age: "20", 
+          emoji: "🐾", 
+          className: "전투학부", 
+          looks: "은회색 머리/금안", 
+          code: "대형견/일편단심", 
+          keywords: ["충성", "직진", "상처"], 
+          detail: "무뚝뚝해 보이지만 믿음을 준 이에게는 꼬리를 흔드는 충직한 늑대. 수인에 대한 편견을 실력으로 증명하려 합니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/15.png"
+        }
+      ],
+      "2학년": [
+        { 
+          name: "아일린 실바리엘", 
+          role: "🌲 정령사 엘프", 
+          age: "68(22)", 
+          emoji: "🌿", 
+          className: "정령학부", 
+          looks: "연녹발/진녹안", 
+          code: "자연조율자/무심다정", 
+          keywords: ["공존", "정화", "거리감"], 
+          detail: "인간 사회의 속도에 적응 중인 엘프. 무심한 듯 챙겨주는 츤데레 매력이 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/6.png"
+        },
+        { 
+          name: "이사벨라 몽테리온", 
+          role: "🏛️ 후작 영애", 
+          age: "22", 
+          emoji: "🦂", 
+          className: "인문학부", 
+          looks: "플래티넘 블론드/자안", 
+          code: "오만한 귀족/서열중시", 
+          keywords: ["열등감", "인정결핍", "질투"], 
+          detail: "완벽해야 한다는 강박에 시달리는 영애. 가시 돋친 말투 뒤에 외로움을 숨기고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/3.png"
+        },
+        { 
+          name: "카이 라그노스", 
+          role: "❓ 이계 마족", 
+          age: "23", 
+          emoji: "🐺", 
+          className: "검술학부", 
+          looks: "적발/호박색 눈/뿔", 
+          code: "생존자/약육강식", 
+          keywords: ["불안", "야성", "마검사"], 
+          detail: "이계에서 건너온 이방인. 돌아갈 곳이 없기에 이곳에서 가장 강해져야만 하는 절박함을 안고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/16.png"
+        },
+        { 
+          name: "노아 모르겐슈타인", 
+          role: "🏛️ 저주받은 백작가", 
+          age: "21", 
+          emoji: "🌑", 
+          className: "어둠마법", 
+          looks: "흑발/오드아이", 
+          code: "회피형/자기파괴적", 
+          keywords: ["저주", "시한부", "구원"], 
+          detail: "자신의 저주가 타인을 해칠까 봐 밀어내는 소년. 누군가 자신을 붙잡아주길 간절히 바라고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/20.png"
+        }
+      ],
+      "3학년": [
+        { 
+          name: "백운 연", 
+          role: "🐉 연 왕국 태자", 
+          age: "23", 
+          emoji: "🌙", 
+          className: "연금술", 
+          looks: "긴 흑발/흑안", 
+          code: "관조자/예의바른 소외", 
+          keywords: ["향수", "정중", "신비"], 
+          detail: "멀리 동방에서 온 귀객. 완벽한 예의로 선을 긋지만 고향에 대한 그리움을 품고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/2.png"
+        },
+        { 
+          name: "아르카 벨세리아", 
+          role: "🏛️ 학생회장/백작령", 
+          age: "24", 
+          emoji: "👑", 
+          className: "마법이론", 
+          looks: "보라 머리/적안", 
+          code: "완벽주의/질서중심", 
+          keywords: ["책임감", "통제", "드릴머리"], 
+          detail: "아카데미의 질서를 상징하는 인물. 규칙 아래 자신의 진심을 억누르며 살아갑니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/4.png"
+        },
+        { 
+          name: "루시안 아스트람", 
+          role: "🪄 차기 마탑주", 
+          age: "24", 
+          emoji: "🔮", 
+          className: "마법학부", 
+          looks: "백발/자안", 
+          code: "나르시시스트/효율우선", 
+          keywords: ["천재", "공감결여", "집착"], 
+          detail: "모든 것을 효율로 계산하는 천재 마법사. 당신이라는 '변수'를 만난 후 계산이 꼬이기 시작합니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/18.png"
+        },
+        { 
+          name: "이안 크로스펠", 
+          role: "🏛️ 몰락 공작가", 
+          age: "24", 
+          emoji: "⚙️", 
+          className: "검술학부", 
+          looks: "애쉬베이지/회안", 
+          code: "실용주의/생존제일", 
+          keywords: ["상실감", "리더", "현실적"], 
+          detail: "가문의 몰락 후 오직 생존만을 위해 달려온 기사. 감정 표현이 서툴지만 동료를 지키는 마음은 진심입니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/14.png"
+        }
+      ],
+      "4학년": [
+        { 
+          name: "미카엘 발레리온", 
+          role: "✝️ 성기사단장 후보", 
+          age: "25", 
+          emoji: "⚔️", 
+          className: "신성검술", 
+          looks: "은발/금안", 
+          code: "수도자/금욕적", 
+          keywords: ["도덕", "억눌린 본능", "갭모에"], 
+          detail: "신전의 기대를 한 몸에 받는 성기사. 완벽한 도덕성 뒤에 뜨거운 본능을 억누르고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/5.png"
+        },
+        { 
+          name: "테오도르 벨로아", 
+          role: "🏛️ 소공작", 
+          age: "26", 
+          emoji: "📚", 
+          className: "인문학부", 
+          looks: "브라운/녹안", 
+          code: "안정형/헌신적", 
+          keywords: ["다정남", "열등감", "중재자"], 
+          detail: "모두에게 다정한 아카데미의 선배. 하지만 형에게 밀려 차남으로 살아온 열등감이 뿌리 깊게 박혀 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/19.png"
+        }
+      ],
+      "교수진": [
+        {
+          name: "레오날드 아르케인",
+          role: "🏛️🪄 아카데미 학장 / 대마도사",
+          age: "48",
+          emoji: "👁️",
+          className: "학장",
+          looks: "백금발/청안",
+          code: "관조자/질서유지/통제불안",
+          keywords: ["권위", "통찰", "고독"],
+          detail: "아르카디아의 최고 권위자. 차원 붕괴 연구의 최전선에 선 대마도사이자, 무너지지 않는 질서를 상징하는 인물입니다. 완벽한 통제력 뒤에 깊은 불안을 감추고 있으며, 학생들을 말없이 지켜보는 차가운 눈빛 속에 누구도 이해하지 못할 책임감을 짊어지고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/12.png"
+        },
+        {
+          name: "세라피나 노크티아",
+          role: "🪄 마탑 출신 교수",
+          age: "39",
+          emoji: "🧪",
+          className: "이론·연구 담당",
+          looks: "흑발/자안",
+          code: "엘리트/효율우선/공감결여",
+          keywords: ["냉철", "완벽주의", "거리두기"],
+          detail: "마탑에서 영입된 천재 이론가. 마법 이론과 연구에서는 타의 추종을 불허하지만, 학생들의 감정은 '비효율적 변수'로 치부합니다. 차갑고 무표정한 강의 뒤에는 스스로를 기계처럼 다루는 자기학대가 숨어 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/11.png"
+        },
+        {
+          name: "엘리시아 그레이브하트",
+          role: "🐉 전선 귀환 영웅",
+          age: "41",
+          emoji: "🛡️",
+          className: "실습·현장 담당",
+          looks: "은발/녹안",
+          code: "보호자/책임중시/상실트라우마",
+          keywords: ["희생", "죄책감", "강인함"],
+          detail: "차원 전쟁에서 돌아온 전설적 기사. 학생들을 실전에 대비시키는 엄격한 교관이지만, 눈빛 속에는 전장에서 잃은 동료들에 대한 깊은 슬픔이 서려 있습니다. 누구도 다시는 잃고 싶지 않다는 집착에 가까운 책임감을 품고 있습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/10.png"
+        },
+        {
+          name: "마리엔느 루미에르",
+          role: "✝️ 신전 연계 추기경",
+          age: "37",
+          emoji: "⚖️",
+          className: "윤리·보조학문 담당",
+          looks: "금발/회안",
+          code: "중재자/균형감각/결단회피",
+          keywords: ["온화", "우유부단", "평화주의"],
+          detail: "신전에서 파견된 성직자 교수. 윤리와 신학을 가르치며 학생들 사이의 갈등을 중재하는 역할을 맡고 있습니다. 모두를 품으려는 따뜻한 마음이 오히려 결정적 순간에 선택하지 못하는 약점이 되곤 합니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/9.png"
+        },
+        {
+          name: "카르도스 브란헤임",
+          role: "🏛️멸국 아레노스의 전직 황실 기사단장",
+          age: "45",
+          emoji: "💥",
+          className: "전투·실전 담당",
+          looks: "적갈발/흑안",
+          code: "압박자/성과중심/연약함혐오",
+          keywords: ["가혹", "결과주의", "트라우마"],
+          detail: "황실 기사단을 이끌었던 전설적 검사. 극한의 훈련과 냉혹한 평가로 악명 높지만, 그의 가혹함은 '약한 자는 살아남지 못한다'는 전장의 진리에서 비롯됩니다. 과거 자신의 관대함이 부하들을 죽음으로 내몰았던 기억이 그를 괴물로 만들었습니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/8.png"
+        },
+        {
+          name: "카르시온 에니그마",
+          role: "🏛️ 황실 궁정 마도사",
+          age: "불명 (추정 60+)",
+          emoji: "🃏",
+          className: "특별강의·비공식과목",
+          looks: "은회색/청안",
+          code: "관찰자/중립유지/정체불명",
+          keywords: ["수수께끼", "초연", "통찰"],
+          detail: "누구도 그의 정체를 명확히 알지 못합니다. 때때로 나타나 비공식 특강을 진행하며, 학생들에게 의미심장한 조언을 남기고 사라집니다. 모든 것을 꿰뚫어보는 듯한 눈빛과 중립적인 태도 뒤에 어떤 의도가 숨어 있는지는 아무도 모릅니다.",
+          imageUrl: "https://ak-rq.org/인물소개용/7.png"
+        }
+      ]
+    };
+
+  
+  function updatePageDisplay() {
+    console.log('페이지:', currentPage);
+    $$(".page").forEach(p => p.classList.remove("active"));
+    const page = $(`#page${currentPage}`);
+    if (page) page.classList.add("active");
+    const cp = $("#currentPage");
+    const tp = $("#totalPages");
+    if (cp) cp.textContent = currentPage;
+    if (tp) tp.textContent = totalPages;
+    const prev = $("#btnPrev");
+    const next = $("#btnNext");
+    if (prev) prev.setAttribute("aria-disabled", currentPage === 1);
+    if (next) next.setAttribute("aria-disabled", currentPage === totalPages);
+  }
+  
+  const btnPrev = $("#btnPrev");
+  const btnNext = $("#btnNext");
+  const btnEnter = $("#btnEnter");
+  
+  if (btnPrev) {
+    btnPrev.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePageDisplay();
+      }
+    });
+  }
+  
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePageDisplay();
+      }
+    });
+  }
+  
+  const bgm = $("#bgm");
+  const volumeSlider = $("#volumeSlider");
+  const volumeLabel = $("#volumeLabel");
+  const btnBgm = $("#btnBgm");
+  let bgmOn = false;
+  
+  if (btnEnter) {
+    btnEnter.addEventListener('click', () => {
+      if (bgm && !bgmOn) {
+        bgmOn = true;
+        if (btnBgm) btnBgm.textContent = '🎵 BGM: ON';
+        if (volumeSlider) bgm.volume = volumeSlider.value / 100;
+        bgm.play().catch(e => console.log("BGM 에러:", e));
+      }
+      currentPage = 2;
+      updatePageDisplay();
+    });
+  }
+  
+  if (btnBgm) {
+    btnBgm.addEventListener('click', () => {
+      bgmOn = !bgmOn;
+      btnBgm.textContent = `🎵 BGM: ${bgmOn ? "ON" : "OFF"}`;
+      if (bgmOn && bgm) {
+        if (volumeSlider) bgm.volume = volumeSlider.value / 100;
+        bgm.play().catch(e => { bgmOn = false; });
+      } else if (bgm) {
+        bgm.pause();
+      }
+    });
+  }
+  
+  if (volumeSlider && volumeLabel && bgm) {
+    volumeSlider.addEventListener('input', () => {
+      volumeLabel.textContent = `${volumeSlider.value}%`;
+      bgm.volume = volumeSlider.value / 100;
+    });
+  }
+
+    // *** 탭 렌더링 함수 추가 ***
+    function renderTabs() {
+      const grades = Object.keys(CHARACTERS);
+      const tabBox = $("#tabs");
+      tabBox.innerHTML = "";
+      grades.forEach(grade => {
+        const btn = document.createElement("button");
+        btn.className = "tab";
+        btn.textContent = grade;
+        if (grade === currentGrade) btn.classList.add("active");
+        btn.onclick = () => {
+          currentGrade = grade;
+          renderTabs();
+          renderCards();
+        };
+        tabBox.appendChild(btn);
+      });
+    }
+
+    // *** 카드 렌더링 함수 ***
+    function renderCards() {
+      const grid = $("#cardGrid");
+      grid.innerHTML = "";
+      const charList = CHARACTERS[currentGrade] || [];
+      
+      const filtered = charList.filter(c => {
+        if (currentNation !== "ALL") {
+          // role에서 국가 이모지 추출하여 필터링
+          const roleEmoji = c.role.split(" ")[0];
+          const nation = NATIONS.find(n => n.emoji === roleEmoji);
+          if (!nation || nation.key !== currentNation) return false;
+        }
+        return true;
+      });
+
+      filtered.forEach(c => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="portrait">
+            ${c.imageUrl ? `<img src="${c.imageUrl}" alt="${c.name}" class="char-portrait-img">` : ''}
+          </div>
+          <div class="cardTitle">${c.emoji} ${c.name}</div>
+          <div class="cardTags">
+            ${c.keywords.map(k => `<span class="cardTag">${k}</span>`).join("")}
+          </div>
+          <div class="cardDesc">${c.role}</div>
+        `;
+        
+        // 카드 클릭 시 상세 모달
+        card.onclick = (e) => {
+          // 이미지 클릭이 아닌 경우에만 캐릭터 모달 열기
+          if (!e.target.classList.contains('char-portrait-img')) {
+            openCharModal(c);
+          }
+        };
+        
+        // 이미지 클릭 시 확대 팝업
+        const img = card.querySelector('.char-portrait-img');
+        if (img) {
+          img.onclick = (e) => {
+            e.stopPropagation();
+            openImageModal(c.imageUrl);
+          };
+        }
+        
+        grid.appendChild(card);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px;">해당 조건의 캐릭터가 없습니다.</div>';
+      }
+    }
+
+    function openCharModal(char) {
+      const inner = $("#charModalInner");
+      inner.innerHTML = `
+        <div class="modalHeader">
+          <div class="modalCharImage">
+            ${char.imageUrl ? `<img src="${char.imageUrl}" alt="${char.name}" class="char-modal-img">` : ''}
+          </div>
+          <div class="modalCharInfo">
+            <div class="modalCharName">${char.emoji} ${char.name}</div>
+            <div class="modalCharTitle">${char.role}</div>
+            <div class="modalStatGrid">
+              <div class="modalStat">
+                <div class="modalStatLabel">나이</div>
+                <div class="modalStatValue">${char.age}</div>
+              </div>
+              <div class="modalStat">
+                <div class="modalStatLabel">외모</div>
+                <div class="modalStatValue">${char.looks}</div>
+              </div>
+              <div class="modalStat">
+                <div class="modalStatLabel">소속</div>
+                <div class="modalStatValue">${char.className}</div>
+              </div>
+              <div class="modalStat">
+                <div class="modalStatLabel">성격 코드</div>
+                <div class="modalStatValue">${char.code}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modalBody">
+          <div class="modalSection">
+            <div class="modalSectionTitle">소개</div>
+            <div class="modalSectionContent">${char.detail}</div>
+          </div>
+          <div class="modalSection">
+            <div class="modalSectionTitle">키워드</div>
+            <div class="modalSectionContent">${char.keywords.join(", ")}</div>
+          </div>
+        </div>
+      `;
+      
+      // 모달 이미지에 클릭 이벤트 추가
+      const modalImg = inner.querySelector('.char-modal-img');
+      if (modalImg && char.imageUrl) {
+        modalImg.onclick = (e) => {
+          e.stopPropagation();
+          openImageModal(char.imageUrl);
+        };
+      }
+      
+      $("#charModal").classList.add("active");
+    }
+
+    function closeCharModal() {
+      $("#charModal").classList.remove("active");
+    }
+
+    function openNationModal(nation) {
+      const inner = $("#nationModalInner");
+      inner.innerHTML = `
+        <div class="nationBanner">
+          <div class="nationIcon">${nation.emoji}</div>
+        </div>
+        <div class="nationName">${nation.fullName}</div>
+        <div class="nationSubtitle">${nation.subtitle}</div>
+        <div class="nationInfo">
+          <div class="nationInfoItem">
+            <div class="nationInfoLabel">국가 특징</div>
+            <div class="nationInfoValue">${nation.feature}</div>
+          </div>
+          <div class="nationInfoItem">
+            <div class="nationInfoLabel">상징</div>
+            <div class="nationInfoValue">${nation.symbol}</div>
+          </div>
+          <div class="nationInfoItem">
+            <div class="nationInfoLabel">통치자</div>
+            <div class="nationInfoValue">${nation.leader}</div>
+          </div>
+          <div class="nationInfoItem">
+            <div class="nationInfoLabel">국교</div>
+            <div class="nationInfoValue">${nation.religion}</div>
+          </div>
+        </div>
+        <div class="modalSection">
+          <div class="modalSectionTitle">국가 특성</div>
+          <div class="nationDesc">${nation.detail}</div>
+        </div>
+        <div class="modalSection">
+          <div class="modalSectionTitle">아카데미와의 관계</div>
+          <div class="nationDesc">${nation.academy}</div>
+        </div>
+        <div class="modalSection">
+          <div class="modalSectionTitle">정치적 입장</div>
+          <div class="nationDesc">${nation.politics}</div>
+        </div>
+      `;
+      $("#nationModal").classList.add("active");
+    }
+
+    function closeNationModal() {
+      $("#nationModal").classList.remove("active");
+    }
+
+    function openImageModal(imageUrl) {
+      if (!imageUrl) return;
+      $("#imageModalImg").src = imageUrl;
+      $("#imageModal").classList.add("active");
+    }
+
+    function closeImageModal() {
+      $("#imageModal").classList.remove("active");
+    }
+
+    // Escape 키로 모달 닫기
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeCharModal();
+        closeNationModal();
+        closeImageModal();
+      }
+    });
+
+    // 닫기 로직: 화면 아무 곳이나 클릭하면 닫힘 (명시적 이벤트 리스너 추가)
+    $("#charModal").addEventListener('click', closeCharModal);
+    $("#nationModal").addEventListener('click', closeNationModal);
+    $("#imageModal").addEventListener('click', closeImageModal);
+
+    // Init
+    // 첫 페이지의 국가 pills (클릭 시 BGM + 모달)
+    const page1Pills = $$(".page .pill[data-nation]");
+    page1Pills.forEach(pill => {
+      pill.onclick = () => {
+        const nationKey = pill.getAttribute("data-nation");
+        const nation = NATIONS.find(n => n.key === nationKey);
+        
+        // BGM 시작
+        if(!bgmOn) {
+          bgmOn = true;
+          $("#btnBgm").textContent = `🎵 BGM: ON`;
+          bgm.volume = volumeSlider.value / 100;
+          bgm.play().catch(e => {
+            console.log("브라우저 자동재생 정책으로 인해 BGM 재생 실패:", e);
+            bgmOn = false;
+            $("#btnBgm").textContent = "🎵 BGM: OFF";
+          });
+        }
+        
+        // 국가 모달 열기
+        if(nation) openNationModal(nation);
+      };
+    });
+
+    // 3페이지의 캐릭터 필터용 국가 pills
+    const pillBoxChar = $("#nationPillsChar");
+    
+    // ALL 필터 추가
+    const allPill = document.createElement("div");
+    allPill.className = "pill active";
+    allPill.textContent = "전체";
+    allPill.onclick = () => {
+      currentNation = "ALL";
+      $$(".pill").forEach(p => p.classList.remove("active"));
+      allPill.classList.add("active");
+      renderCards();
+    };
+    pillBoxChar.appendChild(allPill);
+
+    // 국가 필터 추가
+    NATIONS.forEach(n => {
+      const p = document.createElement("div");
+      p.className = "pill";
+      p.textContent = n.key;
+      p.style.cursor = "pointer";
+      p.onclick = () => {
+        currentNation = n.key;
+        $$(".pill").forEach(pill => pill.classList.remove("active"));
+        p.classList.add("active");
+        renderCards();
+      };
+      p.ondblclick = () => {
+        if(!bgmOn) {
+          bgmOn = true;
+          $("#btnBgm").textContent = `🎵 BGM: ON`;
+          bgm.volume = volumeSlider.value / 100;
+          bgm.play().catch(e => {
+            console.log("브라우저 자동재생 정책으로 인해 BGM 재생 실패:", e);
+            bgmOn = false;
+            $("#btnBgm").textContent = "🎵 BGM: OFF";
+          });
+        }
+        openNationModal(n);
+      };
+      pillBoxChar.appendChild(p);
+    });
+
+    renderTabs();
+    renderCards();
+});
+</script>
+</body>
+</html>
